@@ -1,6 +1,6 @@
-<center>
+<p align="center">
     <img src="static/images/logo.svg" width="220">
-</center>
+</p>
 
 # Мессенджер
 Самостоятельная работа для Яндекс.Практикума
