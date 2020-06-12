@@ -1,0 +1,37 @@
+.avatar {
+    position: relative;
+    background: linear-gradient(90deg, hsla(190, 79, 59, 1) 0%, hsla(226, 50, 65, 1) 100%);
+    overflow: hidden;
+
+    /* Элементы */
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Модификаторы */
+
+    &_size {
+
+        @mixin avatar-size($size) {
+            width: $size;
+            height: $size;
+            border-radius: $size / 2;
+        }    
+
+        &_s {
+            @include avatar-size(32px)
+        }
+
+        &_m {
+            @include avatar-size(40px)
+        }
+
+        &_xl {
+            @include avatar-size(220px)
+        }
+    }
+}

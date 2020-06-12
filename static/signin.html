@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body class="body">
+    <div class="wrapper">
+        <div class="modal">
+            <div class="modal__header">
+                <img class="logo logo_size_s" src="./images/logo.svg" />
+            </div>
+            <div class="modal__content">
+                <span class="form-title">Войдите, чтобы продолжить</span>
+                <form class="form">
+                    <div class="form__field">
+                        <div class="input">
+                            <input class="input__control" name="login" type="text" placeholder="Введите логин">
+                        </div>
+                    </div>
+                    <div class="form__field">
+                        <div class="input input_invalid">
+                            <input class="input__control" name="password" type="password" placeholder="Введите пароль">
+                            <span class="input__error">
+                                Неверный пароль
+                            </span>
+                        </div>
+                    </div>
+                    <button class="form__button button button_view_action" type="submit">Войти</button>
+                    <a class="form__button button button_view_pseudo" href="signup.html">Зарегистрироваться</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

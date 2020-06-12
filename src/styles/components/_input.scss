@@ -1,0 +1,43 @@
+.input {
+
+    &__control {
+        width: 100%;
+        border: 0;
+        border-width: 0 0 1px;
+        padding-bottom: 1px;
+        border-color: #ebebeb;
+        border-color: var(--common-border);
+        border-style: solid;
+        font-size: 16px;
+        font-family: inherit;
+        height: 32px;
+        outline: none;
+        margin-bottom: 5px;
+        box-sizing: content-box;
+        background: 0 0;
+        color: currentColor;
+    
+        &:focus {
+            border-color: #ffdb4d;
+            border-color: var(--action-button-background);
+            border-width: 0 0 2px;
+            padding-bottom: 0;
+        }        
+    }
+
+    .input__error {
+        margin-bottom: 5px;
+        color: #df4b41;
+        border-color: var(--common-alert);
+        font-size: 14px;
+    }
+
+    /* Модификаторы */
+
+    &_invalid .input__control {
+        border-color: #df4b41;
+        border-color: var(--common-alert);
+        border-width: 0 0 2px;
+        padding-bottom: 0;
+    }
+}

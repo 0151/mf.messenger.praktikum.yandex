@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body class="body">
+    <header class="header">
+        <a href="messenger-list.html">
+            <img class="logo logo_size_s" src="./images/logo.svg" />
+        </a>
+    </header>
+    <div class="settings">
+        <div class="settings__inner">
+            <h1 class="settings__title">
+                Ваш профиль
+            </h1>
+            <form class="form">
+                <div class="form__field">
+                    <div class="avatar avatar_size_xl settings-avatar">
+                        <img class="avatar__image" src="./images/avatars/pushkin.jpg" />
+                    </div>
+                </div>
+                <div class="form__field">
+                    <div class="input">
+                        <input class="input__control" name="email" type="name" placeholder="Ваше имя" value="Александр">
+                    </div>
+                </div>
+                <div class="form__field">
+                    <div class="input">
+                        <input class="input__control" name="email" type="email" placeholder="Адрес электронной почты" value="frenchman@foo.bar">
+                    </div>
+                </div>
+                <div class="form__field">
+                    <div class="input">
+                        <input class="input__control" name="passwordOld" type="password" placeholder="Ваш текущий пароль">
+                    </div>
+                </div>
+                <div class="form__field">
+                    <div class="input">
+                        <input class="input__control" name="passwordNew" type="password" placeholder="Новый пароль">
+                    </div>
+                </div>
+                <div class="form__field">
+                    <div class="input">
+                        <input class="input__control" name="passwordConfirm" type="password" placeholder="Повторите пароль">
+                    </div>
+                </div>
+                <button class="form__button button button_view_action" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

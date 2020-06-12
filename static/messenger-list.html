@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мессенджер</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body class="body">
+    <div class="messenger-layout">
+        <div class="messenger-sidebar">
+            <div class="chat-list-header">
+                <a class="avatar avatar_size_s" href="settings.html">
+                    <img class="avatar__image" src="./images/avatars/pushkin.jpg" />
+                </a>
+                <button class="menu-button button button_view_plain">
+                    <svg class="menu-button__icon">
+                        <use xlink:href="#icon-menu">
+                    </svg> 
+                </button>
+            </div>
+            <div class="search">
+                <input class="search__input" type="text" placeholder="Поиск">
+            </div>
+            <ul class="chat-list">
+                <li class="chat-entity chat-list-item" tabindex="0">
+                    <div class="chat-entity__prepend">
+                        <div class="avatar avatar_size_m">
+                            <img class="avatar__image" src="./images/avatars/kern.jpg">
+                        </div>
+                    </div>
+                    <div class="chat-entity__body">
+                        <div class="chat-entity__horizontal-layout">
+                            <div class="chat-entity__header">Анна Керн</div>
+                            <div class="chat-entity__date">11.06.25</div>
+                        </div>
+                        <div class="chat-entity__text">Вы уверяете, что я не знаю вашего характера. А какое мне до него дело? очень он мне нужен — разве у хорошеньких женщин должен быть характер?</div>
+                    </div>
+                </li>
+                <li class="chat-entity chat-list-item" tabindex="0">
+                    <div class="chat-entity__prepend">
+                        <div class="avatar avatar_size_m">
+                            <img class="avatar__image" src="./images/avatars/hitrovo.jpg">
+                        </div>
+                    </div>
+                    <div class="chat-entity__body">
+                        <div class="chat-entity__horizontal-layout">
+                            <div class="chat-entity__header">Елизавета Хитрово</div>
+                            <div class="chat-entity__date">02.10.26</div>
+                        </div>
+                        <div class="chat-entity__text">Не в вашем благородном характере оставлять меня без вестей о себе.</div>
+                    </div>
+                </li>
+                <li class="chat-entity chat-list-item" tabindex="0">
+                    <div class="chat-entity__prepend">
+                        <div class="avatar avatar_size_m">
+                            <img class="avatar__image" src="./images/avatars/goncharova.jpg">
+                        </div>
+                    </div>
+                    <div class="chat-entity__body">
+                        <div class="chat-entity__horizontal-layout">
+                            <div class="chat-entity__header">Наталья Гончарова</div>
+                            <div class="chat-entity__date">10.12.36</div>
+                        </div>
+                        <div class="chat-entity__text">Ну прощай. Целую тебя и ребят, будьте здоровы.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="messenger-main">
+            <div class="chat-placeholder">
+                Выберите чат для начала общения
+            </div>
+        </div>
+    </div>
+    <svg width="0" height="0" class="visually-hidden">
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.13 24" id="icon-attach">
+            <path d="M.03 20C1.13 11.3 1.8 7.89 2.31 4.52S6.08-.44 9.57.11s6 2.59 5.57 6.31-1.78 12-1.78 12l-2-.21s1.28-8.81 1.65-11.69-1.87-4.12-3.68-4.36c-2.65-.35-4.92 1-5.16 2.92S2.82 14 1.91 20.09c-.37 2.42 5.48 3.52 5.89.42.1-.75 1.26-10.75 1.45-12.29.1-.87-.79-1.07-.95-1.09A1 1 0 0 0 7.05 8c0-.42-.8 10-.8 10l-2-.27s.84-10.54.8-10.25A2.94 2.94 0 0 1 8.46 5.1a3 3 0 0 1 2.72 3.18C11 9.78 9.84 19.85 9.75 20.64 9.16 25.78-.56 24.57.03 20z"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="icon-smile">
+            <path d="M15.2 6.4l8.3-.2.5 4.2-9.5-.9.7-3.1zM18.5 18c-3.7 2.1-10.1 1.5-12.7-1.9l1.9-2c1.9 1.5 6.2 1.9 9.4.5l1.4 3.4zM.1 12.1l2.7-2.4L0 7.3l1.7-2.6 6.1 4.1.1 1.4-6 4.3-1.8-2.4z" fill-rule="evenodd" clip-rule="evenodd"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-menu">
+            <circle cx="256" cy="256" r="64"></circle>
+            <circle cx="256" cy="448" r="64"></circle>
+            <circle cx="256" cy="64" r="64"></circle>
+        </symbol>
+    </svg>
+</body>
+</html>

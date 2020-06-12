@@ -1,0 +1,22 @@
+.chat {
+    display: flex;
+    box-sizing: border-box;
+    padding: 12px 0;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.timestamp {
+    align-self: stretch;
+    padding: 6px 12px;
+    text-align: center;
+    color: #888;
+    color: var(--common-color-secondary);
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.timestamp::first-letter {
+    text-transform: uppercase;
+}

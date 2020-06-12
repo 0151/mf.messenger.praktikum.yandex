@@ -1,0 +1,41 @@
+.chat-entity {
+    display: flex;
+    padding-left: 12px;
+    align-items: center;
+    list-style: none;
+
+    /* Элементы */
+
+    &__horizontal-layout {
+        display: flex;
+        align-items: center;    
+    }
+
+    &__body {
+        flex-grow: 1;
+        align-self: stretch;
+        padding: 10px 10px 6px 12px;
+    }
+
+    &__header {
+        flex-grow: 1;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    &__date {
+        font-size: 10px;
+        color: #888;
+        color: var(--common-color-secondary);
+    }
+
+    &__text {
+        max-height: 34px;
+        font-size: 14px;
+        line-height: 17px;
+        color: #888;
+        color: var(--common-color-secondary);
+        overflow: hidden;
+        text-overflow: clip;
+    }
+}

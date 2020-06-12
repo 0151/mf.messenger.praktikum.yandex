@@ -1,0 +1,28 @@
+.error {
+
+    /* Элементы */
+
+    &__inner {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 3% 0 20px;
+        text-align: center;
+    }
+
+    &__code {
+        display: block;
+        font-size: 120px;
+        font-weight: bold;
+        color: #ebebeb;
+        color: var(--common-background-secondary);
+    }
+
+    &__message {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    &__button {
+        margin-top: 45px;
+    }
+}
