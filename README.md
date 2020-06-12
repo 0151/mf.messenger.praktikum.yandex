@@ -1,15 +1,20 @@
-![Мессенджер](/static/images/logo.svg)
+<center>
+    <img src="static/images/logo.svg" width="220">
+</center>
 
 # Мессенджер
-Проектная работа для Яндекс.Практикума
+Самостоятельная работа для Яндекс.Практикума
 
-[Верстка]():
-* [Вход]()
-* [Регистрация]()
-* [Список чатов]()
-* [Чат]()
-* [Настройки профиля]()
-* [Страница ошибки]()
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6d8cc77b-b8fe-4901-8452-559fe9bc11a4/deploy-status)](https://app.netlify.com/sites/mssngr/deploys)
+
+
+[Верстка](https://mssngr.netlify.app/):
+* [Вход](https://mssngr.netlify.app/signin.html)
+* [Регистрация](https://mssngr.netlify.app/signup.html)
+* [Список чатов](https://mssngr.netlify.app/messenger-list.html)
+* [Чат](https://mssngr.netlify.app/messenger-chat.html)
+* [Настройки профиля](https://mssngr.netlify.app/settings.html)
+* [Страница ошибки](https://mssngr.netlify.app/404.html)
 
 ## Требования
 * [Node.js](https://nodejs.org)
