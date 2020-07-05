@@ -6,7 +6,6 @@ export class Component {
         this._children = children
 
         this._id = uid()
-        document.components[this._id] = this
     }
 
     setState(props) {
