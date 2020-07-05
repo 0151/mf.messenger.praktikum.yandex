@@ -1,3 +1,6 @@
 .DS_Store
 node_modules
-static/css
+public/*
+!public/_redirects
+!public/index.html
+!public/images

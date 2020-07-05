@@ -25,7 +25,7 @@ npm i
 ```
 2. Запуск среды разработки
 ```bash
-nmp run dev
+nmp run develop
 ```
 По умолчанию сервер слушает [localhost:3000](http://localhost:3000)
 
