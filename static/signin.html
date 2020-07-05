@@ -9,44 +9,6 @@
 </head>
 <body class="body">
     <script src="./app.js"></script>
-    <script type="module">
-        import Signin from './components/Signin.js'
-        import SigninForm from './components/SigninForm.js'
-        import Input from './components/Input.js'
-        import Button from './components/Button.js'
-        import Validate from './utils/validate.js'
-
-        window.validate = new Validate()
-        validate.rule('login', value => value === 'demo')
-
-        new Signin(document.body).render()
-
-        const form = new SigninForm('signinForm', {}, [
-            new Input('login', {
-                name: 'login',
-                type: 'text',
-                value: 'demo',
-                placeholder: 'Введите логин',
-                rules: { login: 'Неверный логин' },
-            }),
-            new Input('password',{
-                name: 'password',
-                type: 'password',
-                placeholder: 'Введите пароль',
-                rules: { required: 'Введите пароль' }
-            }),
-            new Button('submit', {
-                submit: true,
-                text: 'Войти',
-                view: 'action'
-            }),
-            new Button('register', {
-                href: '/',
-                text: 'Зарегистрироваться',
-                view: 'pseudo'
-            })
-        ])
-        form.render()
-    </script>
+    <script type="module" src="./routes/signin.js"></script>
 </body>
 </html>
