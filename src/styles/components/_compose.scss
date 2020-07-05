@@ -9,17 +9,21 @@
 }
 
 .message-editor {
-    display: block;
-    box-sizing: border-box;
-    padding: 10px 8px;
-    min-height: 40px;
-    max-height: 164px;
     flex-grow: 1;
-    resize: none;
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 18px;
-    border: 0;
+
+    &__textarea {
+        display: block;
+        box-sizing: border-box;
+        padding: 10px 8px;
+        min-height: 40px;
+        max-height: 164px;
+        width: 100%;
+        resize: none;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 18px;
+        border: 0;
+    }
 }
 
 .compose-button {

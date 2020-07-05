@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ошибка</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+</head>
+<body class="body">
+    <yp-component id="header"></yp-component>
+    <yp-component id="error"></yp-component>
+
+    <script src="./app.js"></script>
+    <script type="module">
+        import Header from './components/Header.js'
+        import Error from './components/Error.js'
+
+        const header = new Header('header')
+        header.render()
+
+        const error = new Error('error', {
+            code: '404',
+            message: new Handlebars.SafeString('<strong>Страница не найдена.</strong> Вероятно, вы ошиблись в запросе.'),
+        })
+        error.render()
+    </script>
+</body>
+</html>

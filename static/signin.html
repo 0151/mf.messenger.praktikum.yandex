@@ -5,34 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
 <body class="body">
-    <div class="wrapper">
-        <div class="modal">
-            <div class="modal__header">
-                <img class="logo logo_size_s" src="./images/logo.svg" />
-            </div>
-            <div class="modal__content">
-                <span class="form-title">Войдите, чтобы продолжить</span>
-                <form class="form">
-                    <div class="form__field">
-                        <div class="input">
-                            <input class="input__control" name="login" type="text" placeholder="Введите логин">
-                        </div>
-                    </div>
-                    <div class="form__field">
-                        <div class="input input_invalid">
-                            <input class="input__control" name="password" type="password" placeholder="Введите пароль">
-                            <span class="input__error">
-                                Неверный пароль
-                            </span>
-                        </div>
-                    </div>
-                    <button class="form__button button button_view_action" type="submit">Войти</button>
-                    <a class="form__button button button_view_pseudo" href="signup.html">Зарегистрироваться</a>
-                </form>
-            </div>
-        </div>
-    </div>
+    <script src="./app.js"></script>
+    <script type="module">
+        import Signin from './components/Signin.js'
+        import SigninForm from './components/SigninForm.js'
+        import Input from './components/Input.js'
+        import Button from './components/Button.js'
+        import Validate from './utils/validate.js'
+
+        window.validate = new Validate()
+        validate.rule('login', value => value === 'demo')
+
+        new Signin(document.body).render()
+
+        const form = new SigninForm('signinForm', {}, [
+            new Input('login', {
+                name: 'login',
+                type: 'text',
+                value: 'demo',
+                placeholder: 'Введите логин',
+                rules: { login: 'Неверный логин' },
+            }),
+            new Input('password',{
+                name: 'password',
+                type: 'password',
+                placeholder: 'Введите пароль',
+                rules: { required: 'Введите пароль' }
+            }),
+            new Button('submit', {
+                submit: true,
+                text: 'Войти',
+                view: 'action'
+            }),
+            new Button('register', {
+                href: '/',
+                text: 'Зарегистрироваться',
+                view: 'pseudo'
+            })
+        ])
+        form.render()
+    </script>
 </body>
 </html>

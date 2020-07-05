@@ -8,13 +8,11 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6d8cc77b-b8fe-4901-8452-559fe9bc11a4/deploy-status)](https://app.netlify.com/sites/mssngr/deploys)
 
 
-[Верстка](https://mssngr.netlify.app/):
-* [Вход](https://mssngr.netlify.app/signin.html)
-* [Регистрация](https://mssngr.netlify.app/signup.html)
-* [Список чатов](https://mssngr.netlify.app/messenger-list.html)
-* [Чат](https://mssngr.netlify.app/messenger-chat.html)
+[Экраны](https://mssngr.netlify.app/):
+* [Авторизация](https://mssngr.netlify.app/signin.html)
+* [Чат](https://mssngr.netlify.app/messenger.html)
 * [Настройки профиля](https://mssngr.netlify.app/settings.html)
-* [Страница ошибки](https://mssngr.netlify.app/404.html)
+* [Страница ошибки](https://mssngr.netlify.app/error.html)
 
 ## Требования
 * [Node.js](https://nodejs.org)
