@@ -9,7 +9,8 @@
 
 
 [Экраны](https://mssngr.netlify.app/):
-* [Авторизация](https://mssngr.netlify.app/signin.html)
+* [Вход](https://mssngr.netlify.app/signin.html)
+* [Регистрация](https://mssngr.netlify.app/signup.html)
 * [Чат](https://mssngr.netlify.app/messenger.html)
 * [Настройки профиля](https://mssngr.netlify.app/settings.html)
 * [Страница ошибки](https://mssngr.netlify.app/error.html)
