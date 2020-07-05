@@ -4,7 +4,8 @@ export class Validate {
         email: value => {
             const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             return pattern.test(value.toLowerCase())
-        }
+        },
+        min: (value, length) => value.length >= length
     }
 
     rule(key, handle) {
