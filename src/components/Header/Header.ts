@@ -2,12 +2,11 @@ import { Component } from '../../modules/component.js'
 import { router } from '../../modules/router.js'
 
 export class Header extends Component {
-    go(): void {
-        router.go('/chats')
-    }
-
     componentDidMount() {
-        this.node.addEventListener('click', this.go)
+        this.node.addEventListener('click', (event: Event) => {
+            event.preventDefault()
+            router.go('/chats')
+        })
     }
 
     render() {

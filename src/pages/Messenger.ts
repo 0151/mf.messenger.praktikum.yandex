@@ -1,5 +1,6 @@
 import { Component } from '../modules/component.js'
 import { Compose } from '../components/Compose/Compose.js'
+import { Avatar } from '../components/Avatar/Avatar.js'
 
 const chats = [
     {
@@ -40,12 +41,19 @@ const current = {
 
 const compose = new Compose()
 
+const ownAvatar = new Avatar({
+    url: './images/avatars/pushkin.jpg',
+    href: '/settings',
+    size: 's'
+})
+
 export class Messenger extends Component {
     constructor() {
         super({
             chats,
             current,
-            compose
+            compose,
+            ownAvatar,
         })
     }
 
@@ -54,9 +62,7 @@ export class Messenger extends Component {
             <div class="messenger-layout">
                 <div class="messenger-sidebar">
                     <div class="chat-list-header">
-                        <a class="avatar avatar_size_s" href="settings.html">
-                            <img class="avatar__image" src="./images/avatars/pushkin.jpg" />
-                        </a>
+                        {{h ownAvatar}}
                         <button class="menu-button button button_view_plain">
                             <svg class="menu-button__icon">
                                 <use xlink:href="#icon-menu">

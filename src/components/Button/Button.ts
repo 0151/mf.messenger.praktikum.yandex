@@ -9,13 +9,12 @@ interface IButtonProps {
 }
 
 export class Button extends Component<IButtonProps> {
-    go(): void {
-        router.go(this.props.href)
-    }
-
     componentDidMount() {
         if (this.props.href) {
-            this.node.addEventListener('click', this.go.bind(this))
+            this.node.addEventListener('click', (event: Event) => {
+                event.preventDefault()
+                router.go(this.props.href)
+            })
         }
     }
 
