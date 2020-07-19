@@ -1,11 +1,15 @@
-import { Avatar } from './Avatar'
-import * as Handlebars from 'handlebars'
+// import { Avatar } from './Avatar'
+// //@ts-ignore
+// import * as Handlebars from 'handlebars'
 
-beforeAll(() => {
-    //window.Handlebars = Handlebars
-})
+// beforeAll(() => {
+//     //window.Handlebars = Handlebars
+// })
 
-test.skip('Тест', () => {
-    const avatar = new Avatar()
-    expect(true).toBe(true);
-});
+// describe.skip('Аватар', () => {
+//     test('Тест', () => {
+//         const avatar = new Avatar()
+//         expect(true).toBe(true)
+//     })
+// })
+

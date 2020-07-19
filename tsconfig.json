@@ -11,7 +11,6 @@
         "./src", "fixImportExtentions.js"
     ],
     "exclude": [
-        "node_modules",
         "./src/**/*.test.ts"
     ]
 }
