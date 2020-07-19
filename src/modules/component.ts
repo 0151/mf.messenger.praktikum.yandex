@@ -2,7 +2,7 @@ import { EventBus } from './eventBus.js'
 import { htmlToNode } from '../utils/dom.js'
 import { uid } from '../utils/uid.js'
 
-export abstract class Component<T extends object = {}> {
+export abstract class Component<T extends object = object> {
     static EVENTS = {
         INIT: 'init',
         FLOW_RENDER: 'flow:render',
@@ -17,31 +17,30 @@ export abstract class Component<T extends object = {}> {
 
     constructor(props = {} as T) {
         this.props = this._createPropsProxy(props)
-        //@ts-ignore
         this._template = Handlebars.compile(this.render())
         this._attachEvents()
         this.eventBus.emit(Component.EVENTS.INIT)
     }
 
-    private _attachEvents() {
+    protected _attachEvents(): void {
         this.eventBus.on(Component.EVENTS.INIT, this.init.bind(this))
         this.eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this))
         this.eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
         this.eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
     }
 
-    init(): void {
+    protected init(): void {
         this.eventBus.emit(Component.EVENTS.FLOW_RENDER)
         this.eventBus.emit(Component.EVENTS.FLOW_CDM)
     }
 
     componentDidMount(): void { }
 
-    private _componentDidMount() {
+    protected _componentDidMount(): void {
         this.componentDidMount()
     }
 
-    private _createPropsProxy(props: T): T {
+    protected _createPropsProxy(props: T): T {
 
         const handler = {
             deleteProperty() {
@@ -58,9 +57,7 @@ export abstract class Component<T extends object = {}> {
         this.eventBus.emit(Component.EVENTS.FLOW_CDU)
     }
 
-    componentDidUpdate(): void { }
-
-    private _componentDidUpdate() {
+    protected _componentDidUpdate(): void {
         this.eventBus.emit(Component.EVENTS.FLOW_RENDER)
     }
 
@@ -68,14 +65,12 @@ export abstract class Component<T extends object = {}> {
         return this._node
     }
 
-    _render(): void {
+    protected _render(): void {
         const append = {}
-
         const context = {
             ...this.props,
             append
         }
-
         const vnode = htmlToNode(this._template(context))
 
         for (const key in append) {
@@ -94,17 +89,15 @@ export abstract class Component<T extends object = {}> {
     abstract render(): string
 }
 
+function h(component: Component) {
+    const key = uid()
+    this.append[key] = component
+
+    return new Handlebars.SafeString(`<${key}></${key}>`)
+}
+
+Handlebars.registerHelper('h', h)
 
 export interface ComponentFactory {
     new(): Component
 }
-
-function h(component: Component) {
-    const key = uid()
-    this.append[key] = component
-    //@ts-ignore
-    return new Handlebars.SafeString(`<${key}></${key}>`)
-}
-
-//@ts-ignore
-Handlebars.registerHelper('h', h)

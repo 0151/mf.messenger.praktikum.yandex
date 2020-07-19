@@ -1,4 +1,5 @@
 import { Component } from '../../modules/component.js'
+import { router } from '../../modules/router.js'
 
 interface IButtonProps {
     text: string,
@@ -8,6 +9,16 @@ interface IButtonProps {
 }
 
 export class Button extends Component<IButtonProps> {
+    go(): void {
+        router.go(this.props.href)
+    }
+
+    componentDidMount() {
+        if (this.props.href) {
+            this.node.addEventListener('click', this.go.bind(this))
+        }
+    }
+
     render() {
         return `
             <{{#if href}}a{{else}}button{{/if}}

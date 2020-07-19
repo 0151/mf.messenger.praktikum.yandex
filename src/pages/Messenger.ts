@@ -38,10 +38,10 @@ const current = {
     ]
 }
 
+const compose = new Compose()
+
 export class Messenger extends Component {
     constructor() {
-        const compose = new Compose({})
-
         super({
             chats,
             current,

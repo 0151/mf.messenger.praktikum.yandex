@@ -1,7 +1,9 @@
-export class EventBus {
-  listeners = {}
+type callback = (...args: unknown[]) => unknown
 
-  on(event, callback) {
+export class EventBus {
+  listeners: Record<string, callback[]> = {}
+
+  on(event: string, callback: callback): void {
     if (undefined === this.listeners[event]) {
       this.listeners[event] = []
     }
@@ -9,7 +11,7 @@ export class EventBus {
     this.listeners[event].push(callback)
   }
 
-  emit(event, ...args) {
+  emit(event: string, ...args: unknown[]): void {
     if (undefined === this.listeners[event]) {
       throw new Error('')
     } else {
@@ -19,7 +21,7 @@ export class EventBus {
     }
   }
 
-  detach(event, callback) {
+  detach(event: string, callback: callback):void {
     this.listeners[event] = this.listeners[event].filter(
       listener => listener !== callback
     )

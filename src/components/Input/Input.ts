@@ -14,7 +14,7 @@ interface IInputProps {
 
 export class Input extends Component<IInputProps> {
     get value(): string {
-        return this.props.value
+        return this.props.value || ''
     }
 
     handleFocusout(event: FocusEvent): void {
@@ -44,11 +44,11 @@ export class Input extends Component<IInputProps> {
         return !errors.length
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         this.node.addEventListener('focusout', this.handleFocusout.bind(this))
     }
 
-    render(): string {
+    render() {
         return `
             <div class="input{{#if errors}} input_invalid{{/if}}">
                 <input

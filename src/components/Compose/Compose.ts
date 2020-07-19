@@ -1,13 +1,13 @@
 import { Component } from '../../modules/component.js'
 import { sanitize } from '../../utils/sanitize.js'
 
-export class Compose extends Component<{}> {
-    constructor(props) {
-        super(props)
+export class Compose extends Component {
+    constructor() {
+        super()
         this.send = this.send.bind(this)
     }
 
-    get value() {
+    get value(): string {
         return (<HTMLTextAreaElement>this.node).value
     }
 
@@ -15,7 +15,7 @@ export class Compose extends Component<{}> {
         (<HTMLTextAreaElement>this.node).value = value
     }
 
-    send(event: KeyboardEvent) {
+    send(event: KeyboardEvent): void {
         if (event.key === 'Enter') {
             event.preventDefault()
 

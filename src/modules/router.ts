@@ -1,11 +1,11 @@
 import { ComponentFactory } from "./component"
 
 class Router {
-    routes: Route[] = []
-    history = window.history
-    current: Route | null = null
+    private routes: Route[] = []
+    private history = window.history
+    private current: Route | null = null
 
-    use(pathname, component) {
+    use(pathname, component): Router {
         const route = new Route(pathname, component)
 
         this.routes.push(route)
@@ -13,7 +13,7 @@ class Router {
         return this
     }
 
-    listen() {
+    listen(): void {
         window.onpopstate = event => {
             const pathname = event.currentTarget.location.pathname
             this._onRoute(pathname)
@@ -23,7 +23,7 @@ class Router {
         this._onRoute(current)
     }
 
-    _onRoute(pathname: string) {
+    _onRoute(pathname: string): void {
         const route = this.lookupRoute(pathname)
 
         if (undefined === route) {
@@ -39,7 +39,7 @@ class Router {
         }
     }
 
-    lookupRoute(pathname: string) {
+    lookupRoute(pathname: string): Route {
         const route = this.routes.find(route => 
             route.match(pathname)
         )
@@ -47,16 +47,16 @@ class Router {
         return route
     }
 
-    go(pathname: string) {
+    go(pathname: string): void {
         this.history.pushState({}, "", pathname)
         this._onRoute(pathname)
     }
 
-    back() {
+    back(): void {
         this.history.back()
     }
 
-    forward() {
+    forward(): void {
         this.history.forward()
     }
 }
@@ -71,11 +71,11 @@ class Route {
         this._component = component
     }
 
-    match(pathname) {
+    match(pathname): boolean {
         return pathname === this._pathname
     }
 
-    render() {
+    render(): void {
         if (!this._node) {
             this._node = new this._component().node
             document.getElementById('app').appendChild(this._node)
@@ -84,7 +84,7 @@ class Route {
         }
     }
 
-    leave() {
+    leave(): void {
         if (this._component) {
             this._node.style.display = 'none'
         }

@@ -14,13 +14,16 @@ class Http {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest()
 
-            xhr.open(method, url)
-
             xhr.onload = function() {
-                resolve(xhr)
+                resolve(true)
+                //resolve(xhr.responseText)
             }
         
-            xhr.onabort = xhr.onerror = xhr.ontimeout = reject
+            xhr.onabort = reject
+            xhr.onerror = reject
+            xhr.ontimeout = reject
+
+            xhr.open(method, url)
 
             if (method === Http.METHODS.GET || !data) {
                 xhr.send()

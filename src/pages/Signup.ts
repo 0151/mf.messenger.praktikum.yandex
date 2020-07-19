@@ -1,9 +1,9 @@
 import { Component } from '../modules/component.js'
-import { SigninForm } from '../components/SigninForm/SigninForm.js'
+import { SignupForm } from '../components/SignupForm/SignupForm.js'
 
-const form = new SigninForm()
+const form = new SignupForm()
 
-export class Signin extends Component {
+export class Signup extends Component {
     constructor() {
         super({
             form
@@ -18,7 +18,7 @@ export class Signin extends Component {
                         <img class="logo logo_size_s" src="./images/logo.svg" />
                     </div>
                     <div class="modal__content">
-                        <span class="form-title">Вход</span>
+                        <span class="form-title">Регистрация</span>
                         {{h form}}
                     </div>
                 </div>
