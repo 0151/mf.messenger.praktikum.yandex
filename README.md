@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="static/images/logo.svg" width="220">
+    <img src="src/static/images/logo.svg" width="220">
 </p>
 
 # Мессенджер
@@ -8,12 +8,12 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6d8cc77b-b8fe-4901-8452-559fe9bc11a4/deploy-status)](https://app.netlify.com/sites/mssngr/deploys)
 
 
-[Экраны](https://mssngr.netlify.app/):
-* [Вход](https://mssngr.netlify.app/signin.html)
-* [Регистрация](https://mssngr.netlify.app/signup.html)
-* [Чат](https://mssngr.netlify.app/messenger.html)
-* [Настройки профиля](https://mssngr.netlify.app/settings.html)
-* [Страница ошибки](https://mssngr.netlify.app/error.html)
+Страницы:
+* [Вход](https://mssngr.netlify.app/signin)
+* [Регистрация](https://mssngr.netlify.app/signup)
+* [Чат](https://mssngr.netlify.app/messenger)
+* [Настройки профиля](https://mssngr.netlify.app/settings)
+* [Страница ошибки](https://mssngr.netlify.app/error)
 
 ## Требования
 * [Node.js](https://nodejs.org)
@@ -30,9 +30,9 @@ nmp run develop
 По умолчанию сервер слушает [localhost:3000](http://localhost:3000)
 
 ## Деплой
-Для компиляции стилей используется скрипт:
+Для сборки проекта используется скрипт:
 ```bash
-npm run build-scss
+npm run build
 ```
 
 ## Благодарность
