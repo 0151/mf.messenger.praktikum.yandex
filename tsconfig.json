@@ -3,10 +3,11 @@
         "lib": ["es5", "es2015", "dom"],
         "outDir": "./public",
         "target": "es6",
-        "module": "es6"
+        "module": "es6",
+        "esModuleInterop": true
     },
     "include": [
-        "./src"
+        "./src", "fixImportExtentions.js"
     ],
     "exclude": [
         "./src/**/*.test.ts"
