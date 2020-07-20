@@ -81,7 +81,9 @@ export abstract class Component<T extends object = object> {
         if (null === this._node) {
             this._node = vnode
         } else {
-            this._node.setAttribute('class', vnode.getAttribute('class'))
+            const classList = vnode.getAttribute('class')
+            
+            if (classList) this._node.setAttribute('class', classList)
             this._node.innerHTML = vnode.innerHTML
         }
     }
