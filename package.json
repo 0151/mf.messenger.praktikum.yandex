@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "src/app.ts",
   "scripts": {
-    "copy": "cp -r src/static public",
+    "copy": "mkdir -p public && cp -r src/static/* public",
     "watch:scss": "npm run build:scss && node-sass -wr src/styles/main.scss --source-map true public/styles.css",
     "watch:ts": "tsc -w",
-    "develop": "npm run copy & watch & node server & npm run watch:scss & npm run watch:ts",
+    "watch": "npm run watch:scss & npm run watch:ts",
+    "develop": "npm run copy & npm run watch & node server",
     "build:scss": "node-sass src/styles/main.scss --output-style compressed public/styles.css",
     "build:ts": "tsc",
     "build": "npm run copy && npm run build:scss && npm run build:ts",
-    "test1": "mocha -r ts-node/register -r esm 'src/**/*.test.ts'",
     "test": "jest"
   },
   "dependencies": {
