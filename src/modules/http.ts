@@ -1,4 +1,4 @@
-import { queryStringify } from '../utils/queryStringify.js'
+import { queryStringify } from '../utils/queryStringify'
 
 interface IRequestOptions {
     method: string

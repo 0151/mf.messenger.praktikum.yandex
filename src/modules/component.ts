@@ -1,6 +1,6 @@
-import { EventBus } from './eventBus.js' 
-import { htmlToNode } from '../utils/dom.js'
-import { uid } from '../utils/uid.js'
+import { EventBus } from './eventBus' 
+import { htmlToNode } from '../utils/dom'
+import { uid } from '../utils/uid'
 
 export abstract class Component<T extends object = object> {
     static EVENTS = {

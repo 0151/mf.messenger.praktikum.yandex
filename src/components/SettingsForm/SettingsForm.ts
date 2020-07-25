@@ -1,9 +1,9 @@
-import { Component } from '../../modules/component.js'
-import { Input } from '../Input/Input.js'
-import { Button } from '../Button/Button.js'
-import { AvatarInput } from '../AvatarInput/AvatarInput.js'
-import { validate } from '../../utils/validate.js'
-import { router } from '../../modules/router.js'
+import { Component } from '../../modules/component'
+import { Input } from '../Input/Input'
+import { Button } from '../Button'
+import { AvatarInput } from '../AvatarInput/AvatarInput'
+import { validate } from '../../utils/validate'
+import { router } from '../../modules/router'
 
 const avatar = new AvatarInput({
     avatar: './images/avatars/pushkin.jpg'

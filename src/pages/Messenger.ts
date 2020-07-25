@@ -1,6 +1,6 @@
-import { Component } from '../modules/component.js'
-import { Compose } from '../components/Compose/Compose.js'
-import { Avatar } from '../components/Avatar/Avatar.js'
+import { Component } from '../modules/component'
+import { Compose } from '../components/Compose/Compose'
+import { Avatar } from '../components/Avatar/Avatar'
 
 const chats = [
     {

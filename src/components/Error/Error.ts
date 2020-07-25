@@ -1,4 +1,4 @@
-import { Component } from '../../modules/component.js'
+import { Component } from '../../modules/component'
 
 interface IErrorProps {
     code: string

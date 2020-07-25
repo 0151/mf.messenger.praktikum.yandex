@@ -1,5 +1,5 @@
-import { Component } from '../../modules/component.js'
-import { router } from '../../modules/router.js'
+import { Component } from '../../modules/component'
+import { router } from '../../modules/router'
 
 export class Header extends Component {
     componentDidMount() {

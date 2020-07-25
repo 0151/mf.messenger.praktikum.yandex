@@ -1,5 +1,5 @@
-import { Component } from '../../modules/component.js'
-import { validate } from '../../utils/validate.js'
+import { Component } from '../../modules/component'
+import { validate } from '../../utils/validate'
 
 interface IInputProps {
     type?: string

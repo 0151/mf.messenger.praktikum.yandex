@@ -1,6 +1,6 @@
-import { Component } from '../modules/component.js'
-import { Error as ErrorBlock } from '../components/Error/Error.js'
-import { Header } from '../components/Header/Header.js'
+import { Component } from '../modules/component'
+import { Error as ErrorBlock } from '../components/Error/Error'
+import { Header } from '../components/Header/Header'
 
 export class Error extends Component {
     constructor() {

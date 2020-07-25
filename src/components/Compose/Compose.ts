@@ -1,5 +1,5 @@
-import { Component } from '../../modules/component.js'
-import { sanitize } from '../../utils/sanitize.js'
+import { Component } from '../../modules/component'
+import { sanitize } from '../../utils/sanitize'
 
 export class Compose extends Component {
     constructor() {

@@ -1,5 +1,5 @@
-import { Component } from '../modules/component.js'
-import { SigninForm } from '../components/SigninForm/SigninForm.js'
+import { Component } from '../modules/component'
+import { SigninForm } from '../components/SigninForm/SigninForm'
 
 const form = new SigninForm()
 

@@ -1,5 +1,7 @@
-import { Component } from '../../modules/component.js'
-import { router } from '../../modules/router.js'
+import { Component } from '../../modules/component'
+import { router } from '../../modules/router'
+
+import './Button.scss'
 
 interface IButtonProps {
     text: string,

@@ -1,6 +1,6 @@
-import { Component } from '../modules/component.js'
-import { SettingsForm } from '../components/SettingsForm/SettingsForm.js'
-import { Header } from '../components/Header/Header.js'
+import { Component } from '../modules/component'
+import { SettingsForm } from '../components/SettingsForm/SettingsForm'
+import { Header } from '../components/Header/Header'
 
 export class Settings extends Component {
     constructor() {

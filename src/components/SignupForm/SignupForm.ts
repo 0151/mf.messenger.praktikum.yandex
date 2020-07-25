@@ -1,8 +1,8 @@
-import { Component } from '../../modules/component.js'
-import { Input } from '../Input/Input.js'
-import { Button } from '../Button/Button.js'
-import { router } from '../../modules/router.js'
-import { validate } from '../../utils/validate.js'
+import { Component } from '../../modules/component'
+import { Input } from '../Input/Input'
+import { Button } from '../Button/Button'
+import { router } from '../../modules/router'
+import { validate } from '../../utils/validate'
 
 const login = new Input({
     name: 'login',
