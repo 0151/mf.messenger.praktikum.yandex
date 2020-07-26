@@ -1,9 +1,6 @@
 declare module '*.handlebars' {
-    const content: string;
-    export default content
+    const template: string;
+    export default template
 }
 
-//TODO: Описать типы Handlebars, Nock
-declare const Handlebars: any
-
-declare module 'nock'
+//declare module 'nock'

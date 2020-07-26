@@ -1,8 +1,7 @@
-//@ts-nocheck
 import Handlebars from 'handlebars'
 window.Handlebars = Handlebars
 
-import { Avatar } from './Avatar'
+import { Button } from './'
 
 describe('Аватар', () => {
     test('Тест', () => {

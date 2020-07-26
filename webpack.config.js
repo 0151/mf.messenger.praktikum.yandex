@@ -1,5 +1,6 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
+const loader = require('sass-loader')
 
 module.exports = {
     entry: './src/index.ts',
@@ -12,7 +13,6 @@ module.exports = {
             {
                 test: /\.ts$/,
                 use: 'ts-loader',
-                exclude: '/node_modules/',
             },
             {
                 test: /\.scss$/,
@@ -21,6 +21,10 @@ module.exports = {
                     'css-loader',
                     'sass-loader',
                 ],
+            },
+            {
+                test: /\.handlebars$/,
+                use: 'raw-loader',
             },
         ]
     },
@@ -35,6 +39,6 @@ module.exports = {
         })
     ],
     resolve: {
-        extensions: ['.ts'],
+        extensions: ['.ts', '.js'],
     },
 }

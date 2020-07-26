@@ -1,3 +1,5 @@
+import Handlebars from 'handlebars/dist/cjs/handlebars'
+
 import { EventBus } from './eventBus' 
 import { htmlToNode } from '../utils/dom'
 import { uid } from '../utils/uid'
@@ -18,6 +20,7 @@ export abstract class Component<T extends object = object> {
     constructor(props = {} as T) {
         this.props = this._createPropsProxy(props)
         this._template = Handlebars.compile(this.render())
+
         this._attachEvents()
         this.eventBus.emit(Component.EVENTS.INIT)
     }

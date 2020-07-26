@@ -1,3 +1,5 @@
+import Handlebars from 'handlebars'
+
 import { Component } from '../modules/component'
 import { Error as ErrorBlock } from '../components/Error/Error'
 import { Header } from '../components/Header/Header'

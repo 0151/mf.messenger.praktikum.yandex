@@ -1,1 +1,6 @@
 export { htmlToNode } from './dom'
+export { queryStringify } from './queryStringify'
+export { sanitize } from './sanitize'
+export { loadSprites } from './sprites'
+export { uid } from './uid'
+export { validate } from './validate'

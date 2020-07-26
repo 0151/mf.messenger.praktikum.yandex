@@ -2,6 +2,7 @@ import { Component } from '../../modules/component'
 import { router } from '../../modules/router'
 
 import './Button.scss'
+import template from './Button.handlebars'
 
 interface IButtonProps {
     text: string,
@@ -21,14 +22,6 @@ export class Button extends Component<IButtonProps> {
     }
 
     render() {
-        return `
-            <{{#if href}}a{{else}}button{{/if}}
-                {{#if href}}href="{{href}}"{{/if}}
-                {{#if submit}}type="submit"{{/if}}
-                class="button{{#if view}} button_view_{{view}}{{/if}}
-            ">
-                {{text}}
-            </{{#if href}}a{{else}}button{{/if}}>
-        `
+        return template
     }
 }

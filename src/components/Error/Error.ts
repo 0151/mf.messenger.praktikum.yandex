@@ -1,8 +1,9 @@
 import { Component } from '../../modules/component'
+import { SafeString } from 'handlebars'
 
 interface IErrorProps {
     code: string
-    message?: string
+    message?: string | SafeString
 }
 
 export class Error extends Component<IErrorProps> {
