@@ -26,6 +26,7 @@
     "handlebars": "^4.7.6",
     "handlebars-loader": "^1.7.1",
     "jest": "^26.1.0",
+    "jest-raw-loader": "^1.0.1",
     "nock": "^13.0.2",
     "raw-loader": "^4.0.1",
     "sass": "^1.26.10",
@@ -41,6 +42,12 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "transform": {
+      "\\.handlebars$": "jest-raw-loader"
+    },
+    "moduleNameMapper": {
+      "\\.scss$": "<rootDir>/src/__mocks__/scssMock.js"
+    }
   }
 }
