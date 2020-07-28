@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "webpack",
+    "start": "webpack-dev-server",
     "test": "jest"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "eslint-plugin-import": "^2.22.0",
     "handlebars": "^4.7.6",
     "handlebars-loader": "^1.7.1",
+    "husky": "^4.2.5",
     "jest": "^26.1.0",
     "jest-raw-loader": "^1.0.1",
     "nock": "^13.0.2",
@@ -37,8 +39,7 @@
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.0",
-    "webpack-cli": "^3.3.12",
-    "xhr2": "^0.2.0"
+    "webpack-cli": "^3.3.12"
   },
   "jest": {
     "preset": "ts-jest",
@@ -49,5 +50,6 @@
     "moduleNameMapper": {
       "\\.scss$": "<rootDir>/src/__mocks__/scssMock.js"
     }
-  }
+  },
+  "precommit": "npm test"
 }
