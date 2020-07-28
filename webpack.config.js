@@ -41,4 +41,12 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.js'],
     },
+    watchOptions: {
+        aggregateTimeout: 200,
+        ignored: /node_modules/
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        historyApiFallback: true,
+    }
 }

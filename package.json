@@ -9,8 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "@babel/parser": "^7.10.5",
@@ -25,7 +24,6 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "handlebars": "^4.7.6",
-    "handlebars-loader": "^1.7.1",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "jest-raw-loader": "^1.0.1",
@@ -39,7 +37,8 @@
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "jest": {
     "preset": "ts-jest",
