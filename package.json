@@ -51,5 +51,9 @@
       "\\.scss$": "<rootDir>/src/__mocks__/scssMock.js"
     }
   },
-  "precommit": "npm test"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  }
 }
