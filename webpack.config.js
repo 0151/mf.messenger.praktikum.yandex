@@ -1,6 +1,5 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
-const loader = require('sass-loader')
 
 module.exports = {
     entry: './src/index.ts',
