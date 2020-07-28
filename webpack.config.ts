@@ -1,7 +1,8 @@
-const path = require('path')
-const CopyPlugin = require('copy-webpack-plugin')
+import * as path from 'path'
+import * as webpack from 'webpack'
+import CopyPlugin from 'copy-webpack-plugin'
 
-module.exports = {
+const config: webpack.Configuration = {
     entry: './src/index.ts',
     output: {
         filename: 'bundle.js',
@@ -49,3 +50,5 @@ module.exports = {
         historyApiFallback: true,
     }
 }
+
+export default config
