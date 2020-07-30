@@ -49,7 +49,7 @@
       "\\.handlebars$": "jest-raw-loader"
     },
     "moduleNameMapper": {
-      "\\.scss$": "<rootDir>/src/__mocks__/scssMock.js"
+      "\\.scss$": "<rootDir>/src/__mocks__/scssMock.ts"
     }
   },
   "husky": {
