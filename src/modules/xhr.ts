@@ -1,5 +1,14 @@
-type requestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
-type requestContentType = 'text/json' | 'application/json' | 'text/plain'
+const METHODS = <const>{
+    GET: 'GET',
+    POST: 'POST',
+    PUT: 'PUT',
+    PATCH: 'PATCH',
+    DELETE: 'DELETE',
+}
+
+type requestMethod = typeof METHODS[keyof typeof METHODS]
+
+type requestContentType =  'application/json' | 'text/plain' | 'application/x-www-form-urlencoded' | 'multipart/form-data'
 
 export interface IRequestOptions {
     baseUrl?: string
@@ -22,22 +31,41 @@ export class Request {
 
 
     constructor(url: string, options: IRequestOptions = {}) {
-        this.method = options.method ?? 'GET'
+        this.method = options.method ?? METHODS.GET
         this.url = url
         this.data = options.data ?? {}
-        this.contentType = options.contentType
+        this.contentType = options.contentType ?? 'application/json'
         this.responseType = options.responseType
 
         this.xhr = new XMLHttpRequest()
     }
 
     send(): Promise<Response> {
+        let data: string = null
+        const url: string = this.url
+
+        if (this.method === METHODS.POST || this.method === METHODS.PUT) {
+            switch (this.contentType) {
+                case 'application/json': data = JSON.stringify(this.data)
+                    break
+            }    
+        }
+
+        if (this.method === METHODS.GET) {
+            //TODO: построить query string, если get
+        }
+
         return new Promise((resolve, reject) => {
             this.xhr.addEventListener('error', () => reject('Error'))
             this.xhr.addEventListener('load', () => resolve(new Response(this.xhr)))
 
             this.xhr.open(this.method, this.url, true)
-            this.xhr.send()
+
+            if (this.method === METHODS.GET) {
+                this.xhr.send()
+            } else {
+                this.xhr.send(data)
+            }
         })
     }
 }

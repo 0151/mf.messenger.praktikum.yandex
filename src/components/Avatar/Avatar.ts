@@ -1,10 +1,11 @@
 import { Component } from '../../modules/component'
 import { router } from '../../modules/router'
+import template from './Avatar.handlebars'
 
 interface IAvatarProps {
     url?: string
     href?: string
-    size: 's' | 'xl' 
+    size: 's' | 'xl'
 }
 
 export class Avatar extends Component<IAvatarProps> {
@@ -18,10 +19,6 @@ export class Avatar extends Component<IAvatarProps> {
     }
 
     render() {
-        return `
-            <a class="settings-link avatar avatar_size_{{size}}"{{#if href}} href="{{ href }}{{/if}}">
-                {{#if url}}<img class="avatar__image" src="{{ url }}" />{{/if}}
-            </a>
-        `
+        return template
     }
 }

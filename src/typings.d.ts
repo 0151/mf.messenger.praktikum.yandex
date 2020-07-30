@@ -1,6 +1,4 @@
 declare module '*.handlebars' {
-    const template: string;
+    const template: string
     export default template
 }
-
-//declare module 'nock'

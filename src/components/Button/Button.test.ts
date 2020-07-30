@@ -1,6 +1,6 @@
 import { Button } from './'
 
-describe('Аватар', () => {
+describe('Кнопка', () => {
     test('правильно рендерится', () => {
         const buttonProps = {
             text: 'Duck'

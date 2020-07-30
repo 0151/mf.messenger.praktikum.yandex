@@ -1,4 +1,4 @@
-import Handlebars from 'handlebars/dist/cjs/handlebars'
+import Handlebars from 'handlebars'
 
 import { EventBus } from './eventBus' 
 import { htmlToNode } from '../utils/dom'
@@ -94,14 +94,14 @@ export abstract class Component<T extends object = object> {
     abstract render(): string
 }
 
+Handlebars.registerHelper('h', h)
+
 function h(component: Component) {
     const key = uid()
     this.append[key] = component
 
     return new Handlebars.SafeString(`<${key}></${key}>`)
 }
-
-Handlebars.registerHelper('h', h)
 
 export interface ComponentFactory {
     new(): Component
