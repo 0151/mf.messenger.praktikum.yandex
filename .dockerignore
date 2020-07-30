@@ -1,0 +1,15 @@
+public/
+*.md
+
+.git/
+.gitignore
+
+node_modules/
+
+.editorconfig
+.eslint*
+
+Dockerfile
+
+heroku.yml
+
