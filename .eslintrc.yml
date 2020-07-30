@@ -1,5 +1,6 @@
 env:
   browser: true
+  es2020: true
 extends:
   - 'eslint:recommended'
   - 'plugin:@typescript-eslint/eslint-recommended'
@@ -10,3 +11,16 @@ parserOptions:
   sourceType: module
 plugins:
   - '@typescript-eslint'
+rules:
+  indent:
+    - error
+    - 4
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - never
