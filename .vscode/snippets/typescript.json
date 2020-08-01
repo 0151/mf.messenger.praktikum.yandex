@@ -1,0 +1,20 @@
+{
+  "Component" : {
+      "prefix": "ypc",
+      "body": [
+          "import { Component } from '../../modules/component'",
+          "",
+          "interface I${1:Name}Props {",
+          "}",
+          "",
+          "export class ${1:Name} extends Component<I${1:Name}Props> {",
+          "    componentDidMount() {",
+          "    }",
+          "",
+          "    render() {",
+          "        return '${2: <div></div>}'",
+          "    }",
+          "}"
+      ]
+  }
+}
