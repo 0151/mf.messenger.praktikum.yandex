@@ -7,7 +7,6 @@ describe('Модуль Http запросов', () => {
     const scope = nock('http://foo.bar')
         .defaultReplyHeaders({
             'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
         })
 
 
@@ -19,17 +18,19 @@ describe('Модуль Http запросов', () => {
         return xhr
             .get('http://foo.bar')
             .then(response => {
-                expect(response.ok).toBe(true)
+                expect(response.json).toEqual({ foo: 'bar' })
             })
     })
 
     test('отправляет данные', () => {
         scope
-            .post('/', { bar: 'buzz' })
+            .post('/', 'buzz')
             .reply(200)
 
         return xhr
-            .post('http://foo.bar', { body: { bar: 'buzz' } })
+            .post('http://foo.bar', {
+                body: 'buzz'
+            })
     })
 
 })

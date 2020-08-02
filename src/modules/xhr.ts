@@ -15,7 +15,8 @@ const CONTENT_TYPES = <const> {
     'application/json': 'application/json',
     'text/plain': 'text/plain',
     'application/x-www-form-urlencoded': 'application/x-www-form-urlencoded',
-    'multipart/form-data': 'multipart/form-data'
+    'multipart/form-data': 'multipart/form-data',
+    'application/xml': 'application/xml',
 }
 
 type ContentType = typeof CONTENT_TYPES[keyof typeof CONTENT_TYPES]
@@ -32,8 +33,7 @@ type RequestBody = Record<string, unknown> | XMLHttpRequestBody
 
 interface IRequestOptions {
     method?: RequestMethod
-    cache?: RequestCache
-    credentials?: RequestCredentials
+    credentials?: boolean
     headers?: IRequestHeaders
     timeout?: number
     body?: RequestBody
@@ -43,8 +43,7 @@ export class Request {
     xhr: XMLHttpRequest
     url: string
     method: RequestMethod
-    cache: RequestCache
-    credentials?: RequestCredentials
+    credentials?: boolean
     headers?: IRequestHeaders
     timeout?: number
     body: RequestBody
@@ -54,8 +53,7 @@ export class Request {
         this.xhr = new XMLHttpRequest()
         this.url = url
         this.method = options.method ?? METHODS.GET
-        this.cache = options.cache ?? 'no-cache'
-        this.credentials = options.credentials //TODO: значение по-умолчанию
+        this.credentials = options.credentials ?? false
         this.headers = options.headers = {}
         this.timeout = options.timeout ?? 0
         this.body = options.body ?? null
@@ -75,27 +73,28 @@ export class Request {
                 body = JSON.stringify(this.body)
                 this.headers['Content-Type'] = this.headers['Content-Type'] ?? CONTENT_TYPES['application/json']
                 break
-            }
             //TODO: ...
+            default:
+                body = this.body
+            }
         }
 
         this.xhr.timeout = this.timeout
-        
-        //TODO: Credentials, cache
+        this.xhr.withCredentials = this.credentials
 
         return new Promise((resolve) => {
             this.xhr.addEventListener('error', () => resolve(new Response(this.xhr)))
+            this.xhr.addEventListener('timeout', () => resolve(new Response(this.xhr)))
             this.xhr.addEventListener('load', () => resolve(new Response(this.xhr)))
 
             this.xhr.open(this.method, url, true)
-
 
             //https://developer.mozilla.org/ru/docs/Web/API/XMLHttpRequest/setRequestHeader
             for (const [key, value] of Object.entries(this.headers)) {
                 this.xhr.setRequestHeader(key, value)
             }
 
-            if (this.method === METHODS.GET) {
+            if (this.method === METHODS.GET || this.method === METHODS.HEAD) {
                 this.xhr.send()
             } else {
                 this.xhr.send(body)
@@ -125,28 +124,53 @@ export class Response {
 
     get json(): Record<string, unknown> {
         try {
+            console.log(this.xhr.responseText)
             return JSON.parse(this.xhr.responseText)
         } catch(error) {
-            throw new Error('Error')
+            throw new Error(error)
         }
     }
 }
 
-export const xhr = {
+interface IXhr {
+    [method: string]: (url: string, options?: Omit<IRequestOptions, 'method'>) => Promise<Response>
+}
 
-    get(url: string, options: Omit<IRequestOptions, 'method'> = {}): Promise<Response> {
-        return new Request(url, { method: METHODS.GET, ...options }).send()
+export const xhr: IXhr = {
+    get(url, options = {}) {
+        return new Request(url, {
+            method: METHODS.GET,
+            ...options
+        }).send()
     },
-
-    head(url: string, options: Omit<IRequestOptions, 'method'> = {}): Promise<Response> {
-        return new Request(url, { method: METHODS.GET, ...options }).send()
+    head(url, options = {}) {
+        return new Request(url, {
+            method: METHODS.HEAD,
+            ...options
+        }).send()
     },
-
-    post(url: string, options: Omit<IRequestOptions, 'method'> = {}): Promise<Response> {
-        return new Request(url, { method: METHODS.POST, ...options }).send()
+    post(url, options = {}) {
+        return new Request(url, {
+            method: METHODS.POST,
+            ...options
+        }).send()
     },
-
-    put(url: string, options: Omit<IRequestOptions, 'method'> = {}): Promise<Response> {
-        return new Request(url, { method: METHODS.PUT, ...options }).send()
-    }
+    put(url, options = {}) {
+        return new Request(url, {
+            method: METHODS.PUT,
+            ...options
+        }).send()
+    },
+    patch(url, options = {}): Promise<Response> {
+        return new Request(url, {
+            method: METHODS.PATCH,
+            ...options
+        }).send()
+    },
+    delete(url, options = {}): Promise<Response> {
+        return new Request(url, {
+            method: METHODS.DELETE,
+            ...options
+        }).send()
+    },
 }
