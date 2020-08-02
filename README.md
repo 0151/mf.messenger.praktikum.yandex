@@ -1,19 +1,7 @@
-<p align="center">
-    <img src="src/static/images/logo.svg" width="220">
-</p>
-
 # Мессенджер
 Самостоятельная работа для Яндекс.Практикума
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6d8cc77b-b8fe-4901-8452-559fe9bc11a4/deploy-status)](https://app.netlify.com/sites/mssngr/deploys)
-
-
-Страницы:
-* [Вход](https://mssngr.netlify.app/signin)
-* [Регистрация](https://mssngr.netlify.app/signup)
-* [Чат](https://mssngr.netlify.app/messenger)
-* [Настройки профиля](https://mssngr.netlify.app/settings)
-* [Страница ошибки](https://mssngr.netlify.app/error)
+[Демо](https://yp-messenger.herokuapp.com)
 
 ## Требования
 * [Node.js](https://nodejs.org)
@@ -27,7 +15,7 @@ npm i
 ```bash
 nmp run develop
 ```
-По умолчанию сервер слушает [localhost:3000](http://localhost:3000)
+По умолчанию сервер слушает [localhost:8080](http://localhost:8080)
 
 ## Деплой
 Для сборки проекта используется скрипт:
