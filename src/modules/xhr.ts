@@ -1,70 +1,104 @@
+import { qs } from '../utils'
+
 const METHODS = <const>{
     GET: 'GET',
+    HEAD: 'HEAD',
     POST: 'POST',
     PUT: 'PUT',
     PATCH: 'PATCH',
     DELETE: 'DELETE',
 }
 
-type requestMethod = typeof METHODS[keyof typeof METHODS]
+type RequestMethod = typeof METHODS[keyof typeof METHODS]
 
-type requestContentType =  'application/json' | 'text/plain' | 'application/x-www-form-urlencoded' | 'multipart/form-data'
+const CONTENT_TYPES = <const> {
+    'application/json': 'application/json',
+    'text/plain': 'text/plain',
+    'application/x-www-form-urlencoded': 'application/x-www-form-urlencoded',
+    'multipart/form-data': 'multipart/form-data'
+}
 
-export interface IRequestOptions {
-    baseUrl?: string
-    method?: requestMethod
-    headers?: Record<string, string>
-    withCredentials?: boolean
-    contentType?: requestContentType
-    responseType?: XMLHttpRequestResponseType
-    data?: Record<string, unknown>
+type ContentType = typeof CONTENT_TYPES[keyof typeof CONTENT_TYPES]
+
+interface IRequestHeaders {
+    'Content-Type'?: ContentType
+    //TODO: ...
+    [key: string]: string
+}
+
+type XMLHttpRequestBody = string | Document | Blob | ArrayBufferView | ArrayBuffer | FormData | URLSearchParams | ReadableStream<Uint8Array>
+
+type RequestBody = Record<string, unknown> | XMLHttpRequestBody
+
+interface IRequestOptions {
+    method?: RequestMethod
+    cache?: RequestCache
+    credentials?: RequestCredentials
+    headers?: IRequestHeaders
     timeout?: number
+    body?: RequestBody
 }
 
 export class Request {
-    method: requestMethod
-    url: string
-    data: Record<string, unknown>
-    contentType: requestContentType
-    responseType: XMLHttpRequestResponseType
     xhr: XMLHttpRequest
+    url: string
+    method: RequestMethod
+    cache: RequestCache
+    credentials?: RequestCredentials
+    headers?: IRequestHeaders
+    timeout?: number
+    body: RequestBody
 
 
     constructor(url: string, options: IRequestOptions = {}) {
-        this.method = options.method ?? METHODS.GET
-        this.url = url
-        this.data = options.data ?? {}
-        this.contentType = options.contentType ?? 'application/json'
-        this.responseType = options.responseType
-
         this.xhr = new XMLHttpRequest()
+        this.url = url
+        this.method = options.method ?? METHODS.GET
+        this.cache = options.cache ?? 'no-cache'
+        this.credentials = options.credentials //TODO: значение по-умолчанию
+        this.headers = options.headers = {}
+        this.timeout = options.timeout ?? 0
+        this.body = options.body ?? null
     }
 
     send(): Promise<Response> {
-        let data: string = null
-        const url: string = this.url
+        let body: XMLHttpRequestBody = null
+        let url: string = this.url
 
-        if (this.method === METHODS.POST || this.method === METHODS.PUT) {
-            switch (this.contentType) {
-                case 'application/json': data = JSON.stringify(this.data)
-                    break
-            }    
+        if (this.method === METHODS.GET || this.method === METHODS.HEAD) {
+            if (typeof this.body === 'object' && this.body !== null && !Array.isArray(this.body)) {
+                url += qs(this.body as Record<string, unknown>)
+            }
+        } else {
+            switch (typeof this.body) {
+            case 'object':
+                body = JSON.stringify(this.body)
+                this.headers['Content-Type'] = this.headers['Content-Type'] ?? CONTENT_TYPES['application/json']
+                break
+            }
+            //TODO: ...
         }
 
-        if (this.method === METHODS.GET) {
-            //TODO: построить query string, если get
-        }
+        this.xhr.timeout = this.timeout
+        
+        //TODO: Credentials, cache
 
-        return new Promise((resolve, reject) => {
-            this.xhr.addEventListener('error', () => reject('Error'))
+        return new Promise((resolve) => {
+            this.xhr.addEventListener('error', () => resolve(new Response(this.xhr)))
             this.xhr.addEventListener('load', () => resolve(new Response(this.xhr)))
 
-            this.xhr.open(this.method, this.url, true)
+            this.xhr.open(this.method, url, true)
+
+
+            //https://developer.mozilla.org/ru/docs/Web/API/XMLHttpRequest/setRequestHeader
+            for (const [key, value] of Object.entries(this.headers)) {
+                this.xhr.setRequestHeader(key, value)
+            }
 
             if (this.method === METHODS.GET) {
                 this.xhr.send()
             } else {
-                this.xhr.send(data)
+                this.xhr.send(body)
             }
         })
     }
@@ -81,18 +115,38 @@ export class Response {
         return this.xhr.status >= 200 && this.xhr.status < 400
     }
 
-    json(): Promise<object> {
-        return this.xhr.getResponseHeader('Content-Type') === 'application/json'
-            ? Promise.resolve(JSON.parse(this.xhr.response))
-            : Promise.reject('Error')
+    get raw(): unknown {
+        return this.xhr.response
+    }
+
+    get text(): string {
+        return this.xhr.responseText
+    }
+
+    get json(): Record<string, unknown> {
+        try {
+            return JSON.parse(this.xhr.responseText)
+        } catch(error) {
+            throw new Error('Error')
+        }
     }
 }
 
 export const xhr = {
+
     get(url: string, options: Omit<IRequestOptions, 'method'> = {}): Promise<Response> {
-        return new Request(url, {method: 'GET', ...options}).send()
+        return new Request(url, { method: METHODS.GET, ...options }).send()
     },
+
+    head(url: string, options: Omit<IRequestOptions, 'method'> = {}): Promise<Response> {
+        return new Request(url, { method: METHODS.GET, ...options }).send()
+    },
+
     post(url: string, options: Omit<IRequestOptions, 'method'> = {}): Promise<Response> {
-        return new Request(url, {method: 'POST', ...options}).send()
+        return new Request(url, { method: METHODS.POST, ...options }).send()
+    },
+
+    put(url: string, options: Omit<IRequestOptions, 'method'> = {}): Promise<Response> {
+        return new Request(url, { method: METHODS.PUT, ...options }).send()
     }
 }
