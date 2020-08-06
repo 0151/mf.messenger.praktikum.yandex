@@ -1,0 +1,12 @@
+<div class="chat">
+    {{#each messages}}
+        <div class="message{{#if own}} message_own{{/if}}">
+            <div class="message__balloon">
+                <div class="message__content">{{text}}</div>
+                <div class="message__info">
+                    <div class="message__date">{{date}}</div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
