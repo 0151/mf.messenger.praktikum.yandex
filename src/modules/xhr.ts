@@ -31,7 +31,7 @@ type XMLHttpRequestBody = string | Document | Blob | ArrayBufferView | ArrayBuff
 
 type RequestBody = Record<string, unknown> | XMLHttpRequestBody
 
-interface IRequestOptions {
+export interface IRequestOptions {
     method?: RequestMethod
     credentials?: boolean
     headers?: IRequestHeaders
@@ -56,7 +56,7 @@ export class Request {
         this.credentials = options.credentials ?? false
         this.headers = options.headers = {}
         this.timeout = options.timeout ?? 0
-        this.body = options.body ?? null
+        this.body = options.body ?? {}
     }
 
     send(): Promise<Response> {
@@ -132,7 +132,7 @@ export class Response {
     }
 }
 
-interface IXhr {
+export interface IXhr {
     [method: string]: (url: string, options?: Omit<IRequestOptions, 'method'>) => Promise<Response>
 }
 
