@@ -1,9 +1,10 @@
-import { ComponentFactory } from "./component"
+import { ComponentFactory } from './component'
 
 class Router {
     private routes: Route[] = []
     private history = window.history
     private current: Route | null = null
+    public before: any
 
     use(pathname, component): Router {
         const route = new Route(pathname, component)
@@ -24,18 +25,22 @@ class Router {
     }
 
     _onRoute(pathname: string): void {
+
         const route = this.lookupRoute(pathname)
 
-        if (undefined === route) {
+        //const route = (pathname === '/signin') 
+        //    ? this.lookupRoute(pathname)
+        //    : this.lookupRoute('/signin')
+
+        if (route) {
+            if (this.current) this.current.leave()
+
+            this.current = route
+            
+            route.render()
+        } else {
             //TODO:
             throw new Error()
-        } else {
-            if (this.current) {
-                this.current.leave()
-            }
-            
-            this.current = route
-            route.render()
         }
     }
 
@@ -48,7 +53,7 @@ class Router {
     }
 
     go(pathname: string): void {
-        this.history.pushState({}, "", pathname)
+        this.history.pushState({}, '', pathname)
         this._onRoute(pathname)
     }
 

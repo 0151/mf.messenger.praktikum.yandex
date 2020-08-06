@@ -10,6 +10,9 @@ export class Signin extends Component {
         })
     }
 
+    componentDidMount() {
+    }
+
     render() {
         return `
             <div class="wrapper">
