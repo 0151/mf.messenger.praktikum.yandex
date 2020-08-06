@@ -12,7 +12,7 @@
           "    }",
           "",
           "    render() {",
-          "        return '${2: <div></div>}'",
+          "        return '${2:<div></div>}'",
           "    }",
           "}"
       ]
