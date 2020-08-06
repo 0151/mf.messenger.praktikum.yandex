@@ -1,5 +1,7 @@
 import { Component } from '../../modules/component'
 import { sanitize } from '../../utils/sanitize'
+import { store, dispatch } from '../../store'
+import { pushMessage } from '../../actions'
 
 export class Compose extends Component {
     constructor() {
@@ -23,13 +25,21 @@ export class Compose extends Component {
 
             if (this.value) {
                 this.value = null
-                console.log(value)
+                
+                dispatch(pushMessage({
+                    text: value,
+                    own: true
+                }))
             }
         }
     }
 
     componentDidMount() {
         this.node.addEventListener('keydown', this.send)
+
+        store.subscribe(() => {
+            console.log(store.getState)
+        })
     }
 
     render() {

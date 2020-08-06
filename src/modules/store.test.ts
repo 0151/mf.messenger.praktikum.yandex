@@ -17,7 +17,7 @@ describe('Стор', () => {
             auth
         })
 
-        const store = new Store(rootReducer)
+        const store = new Store(rootReducer, {})
 
         store.subscribe(cb)
 

@@ -1,32 +1,42 @@
-interface IAction {
+export interface Action {
     type: string
-    payload?: Record<string, unknown>
 }
 
-type State = unknown
+export interface AnyAction extends Action {
+    [key: string]: any
+}
 
-type Reducer = (state: State, action: IAction) => void
+export interface ActionCreator<A, P extends any[] = any[]> {
+    (...args: P): A
+}
 
-export class Store {
-    private _currentReducer: Reducer
-    private _currentState: State
+export type Reducer<T = any, A extends Action = AnyAction> = (state: T, action: A) => T
+
+export class Store<T, A extends Action = AnyAction> {
+    private _currentReducer: Reducer<T>
+    private _currentState: T
     private _currentListeners: (() => void)[]
 
-    constructor(reducer: Reducer, preloadedState = {}) {
+    constructor(reducer: Reducer<T>, preloadedState: T) {
         this._currentReducer = reducer
         this._currentState = preloadedState
         this._currentListeners = []
+
+        this.subscribe = this.subscribe.bind(this)
+        this.dispatch = this.dispatch.bind(this)
     }
 
-    get getState(): State {
+    get getState(): T {
         return this._currentState
     }
 
     subscribe(listener: () => void): void {
         this._currentListeners.push(listener)
+
+        //TODO: вернуть unsubscribe
     }
 
-    dispatch(action: IAction): void {
+    dispatch(action: A): void {
         this._currentState = this._currentReducer(this._currentState, action)
 
         this._currentListeners.forEach(listener => listener())
@@ -35,8 +45,8 @@ export class Store {
 
 export const combineReducers = (reducers: Record<string, Reducer>) => {
 
-    return function(state = {}, action: IAction): State {
-        const nextState = {}
+    return function(state: Record<string, any>, action: AnyAction): Record<string, any> {
+        const nextState: Record<string, any> = {}
 
         for (const key in reducers) {
             const reducer = reducers[key]
