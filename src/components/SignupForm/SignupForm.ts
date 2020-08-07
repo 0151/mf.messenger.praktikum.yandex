@@ -4,7 +4,11 @@ import { Button } from '../Button/Button'
 import { router } from '../../modules/router'
 import { validate } from '../../utils/validate'
 import template from './SignupForm.handlebars'
-
+import { authApi } from '../../modules/api'
+import { SignUpRequest } from '../../modules/api/models/auth'
+import { loadChats } from '../../actions'
+import { loadUserInfo } from '../../actions/auth'
+import { dispatch } from '../../store'
 
 const firstName = new Input({
     name: 'firstName',
@@ -115,8 +119,26 @@ export class SignupForm extends Component {
         ].some(component => !component.validate())
 
         if (!hasErrors) {
-            console.log(this.data)
-            router.go('/chats')
+            const params: SignUpRequest = {
+                first_name: this.data.firstName as string,
+                second_name: this.data.secondName as string,
+                login: this.data.login as string,
+                email: this.data.email as string,
+                password: this.data.password as string,
+                phone: this.data.login as string,
+            }
+
+            authApi
+                .signup(params)
+                .then(() => {
+                    dispatch(loadChats())
+                    dispatch(loadUserInfo())
+                    router.go('/chats')
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            
         }
     }
 

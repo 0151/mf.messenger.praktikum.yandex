@@ -5,9 +5,7 @@ import { Signin } from './containers/Signin'
 import { Messenger } from './containers/Messenger/Messenger'
 import { Settings } from './containers/Settings'
 import { Signup } from './containers/Signup'
-import { authApi, chatsApi } from './modules/api'
-import { dispatch, store } from './store'
-import { recieveChats } from './actions'
+import { authApi } from './modules/api'
 import './styles/main.scss'
 
 router
@@ -20,4 +18,5 @@ router
 
 loadSprites('./images/sprites.svg')
 
+//TODO: удалить
 authApi.logout()

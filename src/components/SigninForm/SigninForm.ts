@@ -5,9 +5,8 @@ import { router } from '../../modules/router'
 import { validate } from '../../utils/validate'
 import { authApi } from '../../modules/api'
 import { loadChats } from '../../actions'
-import { dispatch } from '../../store'
 import { loadUserInfo } from '../../actions/auth'
-import { store } from '../../store'
+import { dispatch } from '../../store'
 
 const login = new Input({
     name: 'login',
@@ -71,7 +70,6 @@ export class SigninForm extends Component {
                     dispatch(loadChats())
                     dispatch(loadUserInfo())
                     router.go('/chats')
-                    console.log(store.getState)
                 })
                 .catch(error => {
                     console.error(error)
