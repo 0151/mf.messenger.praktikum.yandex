@@ -3,3 +3,7 @@ export type ChatsResponse = {
     title: string,
     avatar: string
 }
+
+export type CreateChatRequest = {
+    title: string
+}

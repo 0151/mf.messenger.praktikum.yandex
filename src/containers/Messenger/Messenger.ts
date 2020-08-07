@@ -4,30 +4,10 @@ import { Avatar } from '../../components/Avatar'
 import { ChatHeader } from '../../components/ChatHeader'
 import { Chat } from '../../components/Chat'
 import { ChatList } from '../../components/ChatList'
-import { store } from '../../store'
+import { store, dispatch } from '../../store'
 import template from './Messenger.handlebars'
-
-const chats = [
-    {
-        author: 'Анна Керн',
-        avatar: './images/avatars/kern.jpg',
-        date: '11.06.25',
-        text: 'Вы уверяете, что я не знаю вашего характера. А какое мне до него дело? очень он мне нужен — разве у хорошеньких женщин должен быть характер?',
-    },
-    {
-        author: 'Елизавета Хитрово',
-        avatar: './images/avatars/hitrovo.jpg',
-        date: '02.10.26',
-        text: 'Не в вашем благородном характере оставлять меня без вестей о себе.',
-    },
-    {
-        author: 'Наталья Гончарова',
-        avatar: './images/avatars/goncharova.jpg',
-        date: '10.12.36',
-        text: 'Ну прощай. Целую тебя и ребят, будьте здоровы.',
-    }
-
-]
+import { chatsApi } from '../../modules/api'
+import { loadChats } from '../../actions'
 
 const compose = new Compose()
 
@@ -50,7 +30,6 @@ const ownAvatar = new Avatar({
 export class Messenger extends Component {
     constructor() {
         super({
-            chats,
             chat,
             compose,
             ownAvatar,
@@ -64,8 +43,17 @@ export class Messenger extends Component {
             const target = event.target as HTMLElement
 
             if (target.matches('.create-chat-button')) {
-                const title = prompt('Новый чат', '')
-                console.log(title)
+                const title: string = prompt('Новый чат', '')
+                if (title) {
+                    chatsApi
+                        .createChat({ title })
+                        .then(() => {
+                            dispatch(loadChats())
+                        })
+                        .catch(error => {
+                            console.error(error)
+                        })
+                }
             } 
         })
     }
