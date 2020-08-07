@@ -16,24 +16,7 @@
         <div class="search">
             <input class="search__input" type="text" placeholder="Поиск">
         </div>
-        <ul class="chat-list">
-            {{#each chats}}
-                <li class="chat-entity chat-list-item" tabindex="0">
-                    <div class="chat-entity__prepend">
-                        <div class="avatar avatar_size_m">
-                            <img class="avatar__image" src="{{avatar}}">
-                        </div>
-                    </div>
-                    <div class="chat-entity__body">
-                        <div class="chat-entity__horizontal-layout">
-                            <div class="chat-entity__header">{{author}}</div>
-                            <div class="chat-entity__date">{{date}}</div>
-                        </div>
-                        <div class="chat-entity__text">{{text}}</div>
-                    </div>
-                </li>
-            {{/each}}
-        </ul>
+        {{h list}}
     </div>
     <div class="messenger-main">
         {{h header}}

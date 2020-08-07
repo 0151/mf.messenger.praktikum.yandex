@@ -3,9 +3,9 @@ import { Compose } from '../../components/Compose'
 import { Avatar } from '../../components/Avatar'
 import { ChatHeader } from '../../components/ChatHeader'
 import { Chat } from '../../components/Chat'
+import { ChatList } from '../../components/ChatList'
 import { store } from '../../store'
 import template from './Messenger.handlebars'
-
 
 const chats = [
     {
@@ -37,6 +37,10 @@ const chat = new Chat({
 
 const header = new ChatHeader()
 
+const list = new ChatList({
+    chats: store.getState.chats
+})
+
 const ownAvatar = new Avatar({
     url: './images/avatars/pushkin.jpg',
     href: '/settings',
@@ -50,7 +54,8 @@ export class Messenger extends Component {
             chat,
             compose,
             ownAvatar,
-            header
+            header,
+            list
         })
     }
 
