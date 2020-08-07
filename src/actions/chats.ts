@@ -3,7 +3,7 @@ import { ActionCreator } from '../modules/store'
 import { ChatsResponse } from '../modules/api/models/chats'
 import { chatsApi } from '../modules/api'
 
-export const recieveChats: ActionCreator<any> = (chats: ChatsResponse[]) => {
+export const recieveChats: ActionCreator = (chats: ChatsResponse[]) => {
     return {
         type: RECIEVE_CHATS,
         chats

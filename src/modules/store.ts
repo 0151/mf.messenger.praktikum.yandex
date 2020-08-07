@@ -8,7 +8,7 @@ export interface AnyAction extends Action {
     [key: string]: any
 }
 
-export interface ActionCreator<A, P extends any[] = any[]> {
+export interface ActionCreator<A = any, P extends any[] = any[]> {
     (...args: P): A
 }
 

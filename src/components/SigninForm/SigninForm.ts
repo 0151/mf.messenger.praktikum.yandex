@@ -6,6 +6,8 @@ import { validate } from '../../utils/validate'
 import { authApi } from '../../modules/api'
 import { loadChats } from '../../actions'
 import { dispatch } from '../../store'
+import { loadUserInfo } from '../../actions/auth'
+import { store } from '../../store'
 
 const login = new Input({
     name: 'login',
@@ -66,18 +68,10 @@ export class SigninForm extends Component {
             authApi
                 .signin(this.data)
                 .then(() => {
-                    router.go('/chats')
-
                     dispatch(loadChats())
-
-                    // authApi.getUserInfo()
-                    //     .then(user => {
-                    //         console.log(user)
-                    //     })
-                    //     .catch(error => {
-                    //         console.error(error)
-                    //     })
-
+                    dispatch(loadUserInfo())
+                    router.go('/chats')
+                    console.log(store.getState)
                 })
                 .catch(error => {
                     console.error(error)

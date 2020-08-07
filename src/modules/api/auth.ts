@@ -6,10 +6,7 @@ import {
     UserResponse,
 } from './models/auth'
 
-
-
 class AuthApi extends Api {
-
 
     signin(params: SignInRequest) {
         const options: IRequestOptions = {
@@ -21,7 +18,6 @@ class AuthApi extends Api {
             .post(`${this._baseUrl}/auth/signin`, options)
             .then(proceed)
     }
-
 
     signup(params: SignUpRequest): Promise<string> {
         const options: IRequestOptions = {
