@@ -45,12 +45,12 @@ const config: webpack.Configuration = {
             patterns: [
                 {
                     from: 'src/static',
+                    to: '',
                     globOptions: {
                         ignore: [
-                            'src/static/index.html',
+                            '**/*.html'
                         ]
-                    },
-                    to: '',
+                    }
                 }
             ]
         })
