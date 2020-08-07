@@ -7,6 +7,11 @@ class Validate {
             const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             return pattern.test(value.toLowerCase())
         },
+        phone: value => {
+            const pattern = /^\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})?$/
+
+            return pattern.test(value)
+        },
         min: (value, length) => value.length >= length
     }
 
