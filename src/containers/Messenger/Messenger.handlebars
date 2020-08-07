@@ -1,0 +1,57 @@
+<div class="messenger-layout">
+    <div class="messenger-sidebar">
+        <div class="chat-list-header">
+            {{h ownAvatar}}
+            <button class="menu-button button button_view_plain">
+                <svg class="menu-button__icon">
+                    <use xlink:href="#icon-menu">
+                </svg> 
+            </button>
+            <button class="create-chat-button button button_view_plain">
+                <svg class="create-chat-button__icon">
+                    <use xlink:href="#icon-pencil-square">
+                </svg> 
+            </button>
+        </div>
+        <div class="search">
+            <input class="search__input" type="text" placeholder="Поиск">
+        </div>
+        <ul class="chat-list">
+            {{#each chats}}
+                <li class="chat-entity chat-list-item" tabindex="0">
+                    <div class="chat-entity__prepend">
+                        <div class="avatar avatar_size_m">
+                            <img class="avatar__image" src="{{avatar}}">
+                        </div>
+                    </div>
+                    <div class="chat-entity__body">
+                        <div class="chat-entity__horizontal-layout">
+                            <div class="chat-entity__header">{{author}}</div>
+                            <div class="chat-entity__date">{{date}}</div>
+                        </div>
+                        <div class="chat-entity__text">{{text}}</div>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="messenger-main">
+        {{h header}}
+        {{h chat}}
+        <div class="compose">
+            <button class="compose-button button button_view_plain">
+                <svg class="compose-button__icon">
+                    <use xlink:href="#icon-attach">
+                </svg> 
+            </button>
+            <div class="message-editor">
+                {{h compose}}
+            </div>
+            <button class="compose-button button button_view_plain">
+                <svg class="compose-button__icon">
+                    <use xlink:href="#icon-smile">
+                </svg> 
+            </button>
+        </div>
+    </div>
+</div>
