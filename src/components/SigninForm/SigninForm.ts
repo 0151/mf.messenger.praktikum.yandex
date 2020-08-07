@@ -3,22 +3,23 @@ import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
 import { router } from '../../modules/router'
 import { validate } from '../../utils/validate'
+import { authApi } from '../../modules/api'
 
 const login = new Input({
     name: 'login',
-    value: 'demo',
+    value: 'yp-demo',
     placeholder: 'Введите логин',
     rules: {
         login: 'Неверный логин'
     }
 })
 
-validate.rule('login', value => value === 'demo')
+validate.rule('login', value => value === 'yp-demo')
 
 const password = new Input({
     name: 'password',
     type: 'password',
-    value: 'demo',
+    value: 'yp-demo',
     placeholder: 'Введите пароль',
     rules: {
         required: 'Введите пароль'
@@ -46,19 +47,37 @@ export class SigninForm extends Component {
         })
     }
 
-    get data(): string {
+    get data(): {
+        login: string,
+        password: string,
+        } {
         //@ts-ignore
         return Object.fromEntries(new FormData(this.node))
     }
 
-    handleSubmit(event): void {
+    handleSubmit(event: Event): void {
         event.preventDefault()
 
         const hasErrors = [login, password].some(component => !component.validate())
 
         if (!hasErrors) {
-            console.log(this.data)
-            router.go('/chats')
+            authApi
+                .signin(this.data)
+                .then(() => {
+                    router.go('/chats')
+
+                    authApi.getUserInfo()
+                        .then(user => {
+                            console.log(user)
+                        })
+                        .catch(error => {
+                            console.error(error)
+                        })
+
+                })
+                .catch(error => {
+                    console.error(error)
+                })
         }
     }
 

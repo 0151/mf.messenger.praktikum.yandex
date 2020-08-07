@@ -51,12 +51,17 @@
 .chat-header {
     border-bottom: 1px solid #ebebeb;
     border-color: var(--common-border);
+    padding: {
+        top: 10px;
+        bottom: 10px;
+    }
 }
 
 .menu-button {
     width: 32px;
     height: 32px;
     padding: 8px;
+    margin-right: auto;
 
     &__icon {
         display: block;
@@ -64,6 +69,22 @@
         height: 16px;
         fill: #888;
         fill: var(--common-color-secondary);
+        pointer-events: none;
+    }
+}
+
+.create-chat-button {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+
+    &__icon {
+        display: block;
+        width: 22px;
+        height: 22px;
+        fill: #888;
+        fill: var(--common-color-secondary);
+        pointer-events: none;
     }
 }
 

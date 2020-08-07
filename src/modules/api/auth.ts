@@ -1,14 +1,15 @@
-import { Api } from './'
+import { Api, proceed } from './'
 import { Response, IRequestOptions } from '../xhr'
 import {
     SignInRequest,
     SignUpRequest,
-    //UserResponse,
+    UserResponse,
 } from './models/auth'
 
 
 
 class AuthApi extends Api {
+
 
     signin(params: SignInRequest) {
         const options: IRequestOptions = {
@@ -18,9 +19,11 @@ class AuthApi extends Api {
 
         return this._xhr
             .post(`${this._baseUrl}/auth/signin`, options)
+            .then(proceed)
     }
 
-    signup(params: SignUpRequest): Promise<Response> {
+
+    signup(params: SignUpRequest): Promise<string> {
         const options: IRequestOptions = {
             credentials: true,
             body: params
@@ -28,15 +31,17 @@ class AuthApi extends Api {
 
         return this._xhr
             .post(`${this._baseUrl}/auth/logout`, options)
+            .then(response => proceed(response))
     }
 
-    getUserInfo(): Promise<Response> {
+    getUserInfo(): Promise<UserResponse> {
         const options: IRequestOptions = {
             credentials: true,
         }
 
         return this._xhr
             .get(`${this._baseUrl}/auth/user`, options)
+            .then(response => proceed(response))
     }
 
     logout(): Promise<Response> {

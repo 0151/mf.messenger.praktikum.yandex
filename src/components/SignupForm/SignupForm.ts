@@ -3,17 +3,41 @@ import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
 import { router } from '../../modules/router'
 import { validate } from '../../utils/validate'
+import template from './SignupForm.handlebars'
+
+
+const firstName = new Input({
+    name: 'firstName',
+    placeholder: 'Имя',
+    rules: {
+        required: 'Введите имя'
+    }
+})
+
+const secondName = new Input({
+    name: 'secondName',
+    placeholder: 'Фамилия',
+    rules: {
+        required: 'Введите фамилию'
+    }
+})
+
 
 const login = new Input({
     name: 'login',
     placeholder: 'Придумайте логин',
     rules: {
-        loginAvailable: 'Этот логин занят',
         required: 'Введите логин'
     }
 })
 
-validate.rule('loginAvailable', value => value !== 'demo')
+const email = new Input({
+    name: 'email',
+    placeholder: 'Адрес электронной почты',
+    rules: {
+        email: 'Неверный формат адреса'
+    }
+})
 
 const password = new Input({
     name: 'password',
@@ -29,8 +53,16 @@ const passwordConfirm = new Input({
     type: 'password',
     placeholder: 'Повторите пароль',
     rules: {
-        signupEqualsPassword: 'Пароли должны совпадать'
+        signupEqualsPassword: 'Пароли должны совпадать',
     },
+})
+
+const phone = new Input({
+    name: 'phone',
+    placeholder: 'Номер мобильного телефона',
+    rules: {
+        phone: 'Неверный формат',
+    }
 })
 
 validate.rule('signupEqualsPassword', value => {
@@ -52,9 +84,13 @@ const register = new Button({
 export class SignupForm extends Component {
     constructor() {
         super({
+            firstName,
+            secondName,
             login,
+            email,
             password,
             passwordConfirm,
+            phone,
             submit,
             register,
         })
@@ -68,7 +104,15 @@ export class SignupForm extends Component {
     handleSubmit(event: Event): void {
         event.preventDefault()
 
-        const hasErrors = [login, password, passwordConfirm].some(component => !component.validate())
+        const hasErrors = [
+            firstName,
+            secondName,
+            login,
+            email,
+            password,
+            passwordConfirm,
+            phone,
+        ].some(component => !component.validate())
 
         if (!hasErrors) {
             console.log(this.data)
@@ -81,24 +125,6 @@ export class SignupForm extends Component {
     }
 
     render() {
-        return `
-            <form>
-                <div class="form-field">
-                    {{h login}}
-                </div>
-                <div class="form-field">
-                    {{h password}}
-                </div>
-                <div class="form-field">
-                    {{h passwordConfirm}}
-                </div>
-                <div class="form__button">
-                    {{h submit}}
-                </div>
-                <div class="form__button">
-                    {{h register}}
-                </div>
-            </form>
-        `
+        return template
     }
 }

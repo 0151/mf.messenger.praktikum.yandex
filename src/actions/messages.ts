@@ -12,7 +12,7 @@ export interface MessagesAction extends Action {
     message: Message
 }
 
-export const pushMessage: ActionCreator<MessagesAction, Message[]> = message => {
+export const pushMessage: ActionCreator<MessagesAction, [Message]> = message => {
     return {
         type: PUSH_MESSAGE,
         message

@@ -1,11 +1,13 @@
 import { loadSprites } from './utils/sprites'
 import { router } from './modules/router'
-import { Error } from './pages/Error'
-import { Signin } from './pages/Signin'
-import { Messenger } from './pages/Messenger'
-import { Settings } from './pages/Settings'
-import { Signup } from './pages/Signup'
-
+import { Error } from './containers/Error'
+import { Signin } from './containers/Signin'
+import { Messenger } from './containers/Messenger/Messenger'
+import { Settings } from './containers/Settings'
+import { Signup } from './containers/Signup'
+import { authApi, chatsApi } from './modules/api'
+import { dispatch, store } from './store'
+import { recieveChats } from './actions'
 import './styles/main.scss'
 
 router
@@ -17,3 +19,5 @@ router
     .listen()
 
 loadSprites('./images/sprites.svg')
+
+authApi.logout()

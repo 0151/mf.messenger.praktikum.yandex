@@ -9,9 +9,7 @@ export const chats: Reducer<ChatsResponse[]> = (state = [], action) => {
             chats
         } = action
 
-        return [
-            chats
-        ]
+        return chats
     }
     default:
         return state

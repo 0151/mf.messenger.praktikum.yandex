@@ -11,7 +11,7 @@ const METHODS = <const>{
 
 type RequestMethod = typeof METHODS[keyof typeof METHODS]
 
-const CONTENT_TYPES = <const> {
+export const CONTENT_TYPES = <const> {
     'application/json': 'application/json',
     'text/plain': 'text/plain',
     'application/x-www-form-urlencoded': 'application/x-www-form-urlencoded',
@@ -124,11 +124,18 @@ export class Response {
 
     get json(): Record<string, unknown> {
         try {
-            console.log(this.xhr.responseText)
             return JSON.parse(this.xhr.responseText)
         } catch(error) {
             throw new Error(error)
         }
+    }
+
+    get status(): number {
+        return this.xhr.status
+    }
+
+    get contentType(): string {
+        return this.xhr.getResponseHeader('content-type')
     }
 }
 
