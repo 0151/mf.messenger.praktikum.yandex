@@ -2,7 +2,7 @@ import * as path from 'path'
 import * as webpack from 'webpack'
 import CopyPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 const config: webpack.Configuration = {
     entry: './src/index.ts',
@@ -17,11 +17,14 @@ const config: webpack.Configuration = {
                 use: 'ts-loader',
             },
             {
-                test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader',]
-                })
+                test: /\.s[ac]ss$/i,
+                use: [
+                    process.env.NODE_ENV !== 'production'
+                        ? 'style-loader'
+                        : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.handlebars$/,
@@ -30,8 +33,9 @@ const config: webpack.Configuration = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: 'styles.css'
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css'
         }),
         new HtmlWebpackPlugin({
             title: 'Мессенджер',
