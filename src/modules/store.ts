@@ -1,4 +1,4 @@
-import { Function } from "@babel/types"
+
 
 export interface Action {
     type: string
@@ -38,17 +38,11 @@ export class Store<T, A extends Action = AnyAction> {
         //TODO: вернуть unsubscribe
     }
 
-    dispatch(action: any): unknown {
-
-        /**
-         * Тест
-         */
+    dispatch(action: A | ((...args: unknown[]) => void)): void {
 
         if (typeof action === 'function') {
             return action(this.dispatch)
         }
-
-        //
 
         this._currentState = this._currentReducer(this._currentState, action)
 
@@ -58,8 +52,8 @@ export class Store<T, A extends Action = AnyAction> {
 
 export const combineReducers = (reducers: Record<string, Reducer>) => {
 
-    return function(state: Record<string, any>, action: AnyAction): Record<string, any> {
-        const nextState: Record<string, any> = {}
+    return function(state: Record<string, unknown>, action: AnyAction): Record<string, any> {
+        const nextState: Record<string, unknown> = {}
 
         for (const key in reducers) {
             const reducer = reducers[key]
