@@ -1,26 +1,52 @@
 import { Api } from './'
 import { Response, IRequestOptions } from '../xhr'
+import {
+    SignInRequest,
+    SignUpRequest,
+    //UserResponse,
+} from './models/auth'
 
-class Auth extends Api {
 
-    signin(params: { login: string, password: string }): Promise<Response> {
-        const options: IRequestOptions  = {
+
+class AuthApi extends Api {
+
+    signin(params: SignInRequest) {
+        const options: IRequestOptions = {
             credentials: true,
             body: params
         }
 
-        return this._xhr.post(`${this._baseUrl}/auth/signin`, options)
+        return this._xhr
+            .post(`${this._baseUrl}/auth/signin`, options)
+    }
+
+    signup(params: SignUpRequest): Promise<Response> {
+        const options: IRequestOptions = {
+            credentials: true,
+            body: params
+        }
+
+        return this._xhr
+            .post(`${this._baseUrl}/auth/logout`, options)
+    }
+
+    getUserInfo(): Promise<Response> {
+        const options: IRequestOptions = {
+            credentials: true,
+        }
+
+        return this._xhr
+            .get(`${this._baseUrl}/auth/user`, options)
     }
 
     logout(): Promise<Response> {
         const options: IRequestOptions = {
             credentials: true,
-            headers: {
-                'Content-Type': 'application/json'
-            }
         }
-        return this._xhr.post(`${this._baseUrl}/auth/logout`, options)
+
+        return this._xhr
+            .post(`${this._baseUrl}/auth/logout`, options)
     }
 }
 
-export const auth = new Auth()
+export const authApi = new AuthApi()

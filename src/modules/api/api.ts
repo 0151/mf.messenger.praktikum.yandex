@@ -1,7 +1,8 @@
-import { xhr, IXhr } from '..'
+import { xhr, IXhr, Response } from '..'
 import { API_BASE_URL } from '../../constants/api'
+import { rejects } from 'assert'
 
-export abstract class Api {
+export class Api {
     protected _baseUrl: string
     protected _xhr: IXhr
 
@@ -10,3 +11,8 @@ export abstract class Api {
         this._xhr = xhr
     }
 }
+
+export const crutch = (response: Response) =>
+    new Promise((resolve, reject) => {
+        //
+    })
