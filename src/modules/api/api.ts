@@ -13,9 +13,12 @@ export class Api {
 
 export const proceed = <T>(response: Response): Promise<T> =>
     new Promise((resolve, reject) => {
+
+        console.info(response.contentType)
+
         switch (response.status) {
         case 200:
-            resolve((response.contentType === CONTENT_TYPES['application/json']
+            resolve((response.contentType.indexOf(CONTENT_TYPES['application/json']) !== -1
                 ? response.json
                 : response.text) as T)
             break

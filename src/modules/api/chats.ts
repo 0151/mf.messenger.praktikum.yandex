@@ -1,18 +1,19 @@
-import { Api } from './'
+import { Api, proceed } from './'
 import { Response, IRequestOptions } from '../xhr'
 import {
-
+    ChatsResponse
 } from './models/chats'
 
 class ChatsApi extends Api {
 
-    getChats(): Promise<Response> {
+    getChats(): Promise<ChatsResponse> {
         const options: IRequestOptions = {
             credentials: true,
         }
 
         return this._xhr
             .get(`${this._baseUrl}/chats`, options)
+            .then(response => proceed(response))
     }
 
     createChat(params: { title: string }): Promise<Response> {

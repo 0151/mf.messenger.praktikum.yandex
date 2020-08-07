@@ -1,7 +1,7 @@
 # Мессенджер
 Самостоятельная работа для Яндекс.Практикума
 
-[Демо](https://yp-messenger.herokuapp.com)
+[Демо](https://yp-messenger.herokuapp.com/signin)
 
 ## Требования
 * [Node.js](https://nodejs.org)

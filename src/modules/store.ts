@@ -1,3 +1,5 @@
+import { Function } from "@babel/types"
+
 export interface Action {
     type: string
 }
@@ -36,7 +38,18 @@ export class Store<T, A extends Action = AnyAction> {
         //TODO: вернуть unsubscribe
     }
 
-    dispatch(action: A): void {
+    dispatch(action: any): unknown {
+
+        /**
+         * Тест
+         */
+
+        if (typeof action === 'function') {
+            return action(this.dispatch)
+        }
+
+        //
+
         this._currentState = this._currentReducer(this._currentState, action)
 
         this._currentListeners.forEach(listener => listener())

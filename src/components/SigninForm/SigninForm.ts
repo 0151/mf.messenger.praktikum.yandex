@@ -4,6 +4,8 @@ import { Button } from '../Button/Button'
 import { router } from '../../modules/router'
 import { validate } from '../../utils/validate'
 import { authApi } from '../../modules/api'
+import { loadChats } from '../../actions'
+import { dispatch } from '../../store'
 
 const login = new Input({
     name: 'login',
@@ -66,13 +68,15 @@ export class SigninForm extends Component {
                 .then(() => {
                     router.go('/chats')
 
-                    authApi.getUserInfo()
-                        .then(user => {
-                            console.log(user)
-                        })
-                        .catch(error => {
-                            console.error(error)
-                        })
+                    dispatch(loadChats())
+
+                    // authApi.getUserInfo()
+                    //     .then(user => {
+                    //         console.log(user)
+                    //     })
+                    //     .catch(error => {
+                    //         console.error(error)
+                    //     })
 
                 })
                 .catch(error => {
