@@ -1,4 +1,4 @@
-import { RECIEVE_CHATS } from '../constants/actionTypes'
+import { SELECT_CHAT, RECIEVE_CHATS } from '../constants/actionTypes'
 import { ActionCreator } from '../modules/store'
 import { ChatsResponse } from '../modules/api/models/chats'
 import { chatsApi } from '../modules/api'
@@ -19,4 +19,11 @@ export const loadChats = () => (dispatch) => {
         .catch(error => {
             console.error(error)
         })
+}
+
+export const selectChat: ActionCreator = (id: number) => {
+    return {
+        type: SELECT_CHAT,
+        id
+    }
 }

@@ -4,7 +4,7 @@ import { EventBus } from './eventBus'
 import { htmlToNode } from '../utils/dom'
 import { uid } from '../utils/uid'
 
-export abstract class Component<T extends object = object> {
+export abstract class Component<T extends Record<string, any> = object> {
     static EVENTS = {
         INIT: 'init',
         FLOW_RENDER: 'flow:render',
@@ -12,12 +12,12 @@ export abstract class Component<T extends object = object> {
         FLOW_CDU: 'flow:component-did-update',
     }
 
-    protected _node: Element = null
+    protected _node: Element
     protected _template: (props: T) => string
     eventBus = new EventBus()
     props: T
 
-    constructor(props = {} as T) {
+    constructor(props: T = {} as T) {
         this.props = this._createPropsProxy(props)
         this._template = Handlebars.compile(this.render())
 
@@ -69,19 +69,20 @@ export abstract class Component<T extends object = object> {
     }
 
     protected _render(): void {
-        const append = {}
+        const appendMap = {}
         const context = {
             ...this.props,
-            append
+            appendMap
         }
+
         const vnode = htmlToNode(this._template(context))
 
-        for (const key in append) {
+        for (const key in appendMap) {
             const placeholder = vnode.getElementsByTagName(key)[0]
-            placeholder.replaceWith(append[key].node)
+            placeholder.replaceWith(appendMap[key].node)
         }
 
-        if (null === this._node) {
+        if (!this._node) {
             this._node = vnode
         } else {
             const classList = vnode.getAttribute('class')
@@ -97,8 +98,8 @@ export abstract class Component<T extends object = object> {
 Handlebars.registerHelper('h', h)
 
 function h(component: Component) {
-    const key = uid()
-    this.append[key] = component
+    const key = uid() 
+    this.appendMap[key] = component
 
     return new Handlebars.SafeString(`<${key}></${key}>`)
 }
