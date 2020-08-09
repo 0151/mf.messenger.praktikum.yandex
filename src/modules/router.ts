@@ -4,12 +4,18 @@ class Router {
     private routes: Route[] = []
     private history = window.history
     private current: Route | null = null
-    public before: any
+    private _beforeEach: Function
 
-    use(pathname, component): Router {
-        const route = new Route(pathname, component)
+    use(pathname: string, component: ComponentFactory, guarded = false): Router {
+        const route = new Route(pathname, component, guarded)
 
         this.routes.push(route)
+
+        return this
+    }
+
+    beforeEach(handle: Function): Router {
+        this._beforeEach = handle.bind(this)
 
         return this
     }
@@ -25,22 +31,19 @@ class Router {
     }
 
     _onRoute(pathname: string): void {
-
         const route = this.lookupRoute(pathname)
-
-        //const route = (pathname === '/signin') 
-        //    ? this.lookupRoute(pathname)
-        //    : this.lookupRoute('/signin')
+        
+        if (!this._beforeEach(route)) {
+            this.go('/signin')
+            return
+        }
 
         if (route) {
             if (this.current) this.current.leave()
-
             this.current = route
-            
             route.render()
         } else {
-            //TODO:
-            throw new Error()
+            this.go('/error')
         }
     }
 
@@ -66,17 +69,19 @@ class Router {
     }
 }
 
-class Route {
+export class Route {
     private _component: ComponentFactory
     private _pathname: string
     private _node = null
+    guarded: boolean
 
-    constructor(pathname: string, component: ComponentFactory) {
+    constructor(pathname: string, component: ComponentFactory, guarded: boolean) {
         this._pathname = pathname
         this._component = component
+        this.guarded = guarded
     }
 
-    match(pathname): boolean {
+    match(pathname: string): boolean {
         return pathname === this._pathname
     }
 

@@ -5,18 +5,27 @@ import { Signin } from './containers/Signin'
 import { Messenger } from './containers/Messenger/Messenger'
 import { Settings } from './containers/Settings'
 import { Signup } from './containers/Signup'
+import { store } from './store'
+import { Route } from './modules/router'
 import { authApi } from './modules/api'
 import './styles/main.scss'
 
+function checkAuth(route: Route) {
+    if (route.guarded && !store.getState.loggedin) return false
+    return true
+}
+
 router
-    .use('/chats', Messenger)
+    .use('/chats', Messenger, true)
     .use('/error', Error)
     .use('/signin', Signin)
     .use('/signup', Signup)
-    .use('/settings', Settings)
+    .use('/settings', Settings, true)
+    .beforeEach(checkAuth)
     .listen()
 
 loadSprites('./images/sprites.svg')
 
-//TODO: удалить
 authApi.logout()
+//Для удобства тестирования авторизации во время разработки
+//При использовании раскомментировать импорт

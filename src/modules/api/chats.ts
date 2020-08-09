@@ -1,4 +1,4 @@
-import { Api, proceed } from './'
+import { Api, proceed } from './api'
 import { IRequestOptions } from '../xhr'
 import {
     ChatsResponse, CreateChatRequest

@@ -15,7 +15,7 @@ npm i
 ```bash
 nmp run develop
 ```
-По умолчанию сервер слушает [localhost:8080](http://localhost:8080)
+По умолчанию сервер слушает [localhost:3000](http://localhost:3000)
 
 ## Деплой
 Для сборки проекта используется скрипт:

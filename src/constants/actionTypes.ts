@@ -13,3 +13,4 @@ export const SELECT_CHAT = 'SELECT_CHAT'
  * Авторизация
  */
 export const RECIEVE_USER_INFO = 'RECIEVE_USER_INFO'
+export const USER_LOGIN = 'USER_LOGIN'

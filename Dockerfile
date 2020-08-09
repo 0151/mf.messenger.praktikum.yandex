@@ -2,7 +2,7 @@ FROM node:12.18.2 AS builder
 WORKDIR /app
 COPY ./ /app
 ENV HUSKY_SKIP_INSTALL=1
-RUN npm install && npm run build
+RUN npm ci && npm run build
 
 FROM nginx:1.19
 COPY --from=builder /app/public /usr/share/nginx/html

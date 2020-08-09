@@ -7,7 +7,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 const config: webpack.Configuration = {
     entry: './src/index.ts',
     output: {
-        filename: '[name].[contenthash].js',
+        filename: '[name].[hash].js',
         path: path.resolve(__dirname, 'public')
     },
     module: {
@@ -33,6 +33,7 @@ const config: webpack.Configuration = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css'
@@ -65,6 +66,8 @@ const config: webpack.Configuration = {
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         historyApiFallback: true,
+        hot: true,
+        port: 3000
     },
     devtool: 'eval'
 }

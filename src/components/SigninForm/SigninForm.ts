@@ -4,8 +4,7 @@ import { Button } from '../Button/Button'
 import { router } from '../../modules/router'
 import { validate } from '../../utils/validate'
 import { authApi } from '../../modules/api'
-import { loadChats } from '../../actions'
-import { loadUserInfo } from '../../actions/auth'
+import { loadChats, loadUserInfo, login as userLogin } from '../../actions'
 import { dispatch } from '../../store'
 
 const login = new Input({
@@ -67,6 +66,7 @@ export class SigninForm extends Component {
             authApi
                 .signin(this.data)
                 .then(() => {
+                    dispatch(userLogin())
                     dispatch(loadChats())
                     dispatch(loadUserInfo())
                     router.go('/chats')

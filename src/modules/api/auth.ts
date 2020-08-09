@@ -1,4 +1,4 @@
-import { Api, proceed } from './'
+import { Api, proceed } from './api'
 import { Response, IRequestOptions } from '../xhr'
 import {
     SignInRequest,

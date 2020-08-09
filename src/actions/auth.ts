@@ -1,4 +1,4 @@
-import { RECIEVE_USER_INFO } from '../constants/actionTypes'
+import { RECIEVE_USER_INFO, USER_LOGIN } from '../constants/actionTypes'
 import { authApi } from '../modules/api'
 
 export const loadUserInfo = () => (dispatch) => {
@@ -10,4 +10,11 @@ export const loadUserInfo = () => (dispatch) => {
         .catch(error => {
             console.error(error)
         })
+}
+
+export const login = () => {
+    return {
+        type: USER_LOGIN,
+        loggedin: true
+    }
 }

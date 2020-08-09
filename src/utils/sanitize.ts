@@ -1,5 +1,14 @@
-export const sanitize = string => {
-    const decoder = document.createElement('div')
-    decoder.innerHTML = string.trim()
-    return decoder.textContent
+/**
+ * https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+ */
+
+const decodingMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    '\'': '&#x27;',
+    '/': '&#x2F;',
 }
+
+export const sanitize = (s: string): string => s.replace(/[&<>"'/]/ig, match => decodingMap[match])

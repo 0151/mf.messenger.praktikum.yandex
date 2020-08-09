@@ -1,16 +1,17 @@
 import { EventBus } from './eventBus'
 
 const eventBus = new EventBus()
-const callback = jest.fn()
 
 describe('Шина событий', () => {
     test('событие добавляется и эмитится', () => {
+        const callback = jest.fn()
+
         eventBus.on('buzz', callback)
         eventBus.emit('buzz')
         expect(callback).toHaveBeenCalled()
     })
 
-    test('бросает ошибку при вызове несуществующего события', () => {
+    test('бросает исключение при вызове несуществующего события', () => {
         expect(() => { eventBus.emit('foo') }).toThrow()
     })
 })
