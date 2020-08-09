@@ -69,7 +69,7 @@ export class SigninForm extends Component {
                     dispatch(userLogin())
                     dispatch(loadChats())
                     dispatch(loadUserInfo())
-                    router.go('/chats')
+                    router.go('/')
                 })
                 .catch(error => {
                     console.error(error)

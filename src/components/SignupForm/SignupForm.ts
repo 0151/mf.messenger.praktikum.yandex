@@ -6,8 +6,7 @@ import { validate } from '../../utils/validate'
 import template from './SignupForm.handlebars'
 import { authApi } from '../../modules/api'
 import { SignUpRequest } from '../../modules/api/models/auth'
-import { loadChats } from '../../actions'
-import { loadUserInfo } from '../../actions/auth'
+import { loadChats, loadUserInfo, login as userLogin} from '../../actions'
 import { dispatch } from '../../store'
 
 const firstName = new Input({
@@ -131,9 +130,10 @@ export class SignupForm extends Component {
             authApi
                 .signup(params)
                 .then(() => {
+                    dispatch(userLogin())
                     dispatch(loadChats())
                     dispatch(loadUserInfo())
-                    router.go('/chats')
+                    router.go('/')
                 })
                 .catch(error => {
                     console.log(error)

@@ -16,7 +16,7 @@ function checkAuth(route: Route) {
 }
 
 router
-    .use('/chats', Messenger, true)
+    .use('/', Messenger, true)
     .use('/error', Error)
     .use('/signin', Signin)
     .use('/signup', Signup)

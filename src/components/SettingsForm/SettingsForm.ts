@@ -94,7 +94,7 @@ export class SettingsForm extends Component {
 
         if (!hasErrors) {
             console.log(this.data)
-            router.go('/chats')
+            router.go('/')
         }
     }
 
