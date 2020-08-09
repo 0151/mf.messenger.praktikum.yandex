@@ -4,7 +4,7 @@ class Router {
     private routes: Route[] = []
     private history = window.history
     private current: Route | null = null
-    private _beforeEach: Function
+    private _beforeEach: (route: Route) => boolean
 
     use(pathname: string, component: ComponentFactory, guarded = false): Router {
         const route = new Route(pathname, component, guarded)
@@ -14,7 +14,7 @@ class Router {
         return this
     }
 
-    beforeEach(handle: Function): Router {
+    beforeEach(handle: (route: Route) => boolean): Router {
         this._beforeEach = handle.bind(this)
 
         return this

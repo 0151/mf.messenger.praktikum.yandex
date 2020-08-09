@@ -10,10 +10,7 @@ import { Route } from './modules/router'
 import { authApi } from './modules/api'
 import './styles/main.scss'
 
-function checkAuth(route: Route) {
-    if (route.guarded && !store.getState.loggedin) return false
-    return true
-}
+const checkAuth = (route: Route) => !(route.guarded && !store.getState.loggedin)
 
 router
     .use('/', Messenger, true)
