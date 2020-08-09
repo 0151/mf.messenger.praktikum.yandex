@@ -33,13 +33,14 @@ class Router {
     _onRoute(pathname: string): void {
         const route = this.lookupRoute(pathname)
         
-        if (!this._beforeEach(route)) {
-            this.go('/signin')
-            return
-        }
-
         if (route) {
+            if (!this._beforeEach(route)) {
+                this.go('/signin')
+                return
+            }
+
             if (this.current) this.current.leave()
+
             this.current = route
             route.render()
         } else {
