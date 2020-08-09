@@ -1,3 +1,0 @@
-- Зафиксировал зависимости в package.json, в Docker-сборке теперь используется npm ci
-- В src/__mock__/ лежала пустая заглушка для импорта стилей в jest, заменил на ES6 Proxy
-- Переписал санитайзер, но во [Vue](https://github.com/vuejs/vue/blob/dev/src/compiler/parser/entity-decoder.js), к примеру, тоже использует метод с textContent
